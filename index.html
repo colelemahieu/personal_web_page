@@ -36,10 +36,22 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<div class="content">
+<section id="home" class="content">
   <h1>Welcome to my website</h1>
   <p>This is the personal page of Cole Le Mahieu.</p>
-</div>
+</section>
+
+<div id="projects-container"></div>
+  
+<script>
+  // Dynamically load the projects.html into the placeholder div
+  fetch('projects.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('projects-container').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading projects:', error));
+</script>
 
 </body>
 </html>
