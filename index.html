@@ -45,7 +45,7 @@
   
 <script>
   // Dynamically load the projects.html into the placeholder div
-  fetch('projects.html')
+  fetch('menu/projects.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('projects-container').innerHTML = data;
