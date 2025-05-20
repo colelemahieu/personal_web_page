@@ -17,6 +17,7 @@
       text-align: center;
       padding: 14px 16px;
       text-decoration: none;
+      cursor: pointer;
     }
     nav a:hover {
       background-color: #ddd;
@@ -24,33 +25,45 @@
     }
     .content {
       padding: 20px;
+      display: none;
+    }
+    .content.active {
+      display: block;
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="#home">Home</a>
-  <a href="#projects">Projects</a>
-  <a href="#cv">CV</a>
-  <a href="#contact">Contact</a>
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('projects')">Projects</a>
+  <a onclick="showSection('cv')">CV</a>
+  <a onclick="showSection('contact')">Contact</a>
 </nav>
 
-<section id="home" class="content">
+<section id="home" class="content active">
   <h1>Welcome to my website</h1>
   <p>This is the personal page of Cole Le Mahieu.</p>
 </section>
 
-<div id="projects-container"></div>
+<section id="projects" class="content">
+  <!-- Placeholder that gets filled by external file -->
+</section>
   
 <script>
-  // Dynamically load the projects.html into the placeholder div
+  function showSection(id) {
+    const sections = document.querySelectorAll('.content');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Load Projects content dynamically
   fetch('menu/projects.html')
-    .then(response => response.text())
+    .then(res => res.text())
     .then(data => {
-      document.getElementById('projects-container').innerHTML = data;
+      document.getElementById('projects').innerHTML = data;
     })
-    .catch(error => console.error('Error loading projects:', error));
+    .catch(err => console.error('Failed to load projects:', err));
 </script>
 
 </body>
