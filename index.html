@@ -41,18 +41,18 @@
   <a onclick="showSection('contact')">Contact</a>
 </nav>
 
-<section id="home" class="content active">
-  <h1>Welcome to my website</h1>
-  <p>This is the personal page of Cole Le Mahieu.</p>
-</section>
-
+  
+<!-- Menu sections to be dynamically loaded -->
+<section id="home" class="content active"></section>
 <section id="projects" class="content"></section>
 <section id="cv" class="content"></section>
 
 <section id="contact" class="content">
   <p>in progress</p>
 </section>
+
   
+<!-- Dynamically load projects and CV menu content -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     function showSection(id) {
@@ -72,6 +72,7 @@
         .catch(err => console.error(`Failed to load ${id}:`, err));
     }
 
+    loadSectionContent('home', 'menu/home.html');
     loadSectionContent('projects', 'menu/projects.html');
     loadSectionContent('cv', 'menu/cv.html');
   });
