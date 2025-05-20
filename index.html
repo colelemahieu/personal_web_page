@@ -47,29 +47,34 @@
 </section>
 
 <section id="projects" class="content"></section>
-
-<section id="cv" class="content">
-  <p>in progress</p>
-</section>
+<section id="cv" class="content"></section>
 
 <section id="contact" class="content">
   <p>in progress</p>
 </section>
   
 <script>
-  function showSection(id) {
-    const sections = document.querySelectorAll('.content');
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
 
-  // Load Projects content dynamically
-  fetch('menu/projects.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('projects').innerHTML = data;
-    })
-    .catch(err => console.error('Failed to load projects:', err));
+    window.showSection = showSection;
+
+    function loadSectionContent(id, path) {
+      fetch(path)
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+        })
+        .catch(err => console.error(`Failed to load ${id}:`, err));
+    }
+
+    loadSectionContent('projects', 'menu/projects.html');
+    loadSectionContent('cv', 'menu/cv.html');
+  });
 </script>
 
 </body>
