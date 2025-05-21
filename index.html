@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cole Le Mahieu</title>
   <style>
-   
     * {
       box-sizing: border-box;
     }
 
-    /* Reset only body-level margins */
     body, h1, h2, h3, p {
       margin: 0;
       padding: 0;
@@ -87,7 +85,6 @@
     <a onclick="showSection('cv')">CV</a>
   </nav>
 
-  <!-- Sections -->
   <section id="home" class="content active"></section>
   <section id="projects" class="content"></section>
   <section id="cv" class="content"></section>
@@ -109,19 +106,24 @@
         .then(res => res.text())
         .then(html => {
           document.getElementById(id).innerHTML = html;
-          loadScript(jsPath);
+
+          const script = document.createElement('script');
+          script.src = jsPath;
+          script.onload = () => {
+            const setupFn = window[`setup${capitalize(id)}`];
+            if (typeof setupFn === 'function') {
+              setupFn();
+            }
+          };
+          document.body.appendChild(script);
         })
         .catch(err => console.error(`Error loading ${id}:`, err));
     }
 
-    function loadScript(src) {
-      const script = document.createElement('script');
-      script.src = src;
-      script.defer = true;
-      document.body.appendChild(script);
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    // Initial load
     document.addEventListener('DOMContentLoaded', () => {
       loadSection('home');     
       loadSection('projects'); 
