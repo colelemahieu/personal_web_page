@@ -1,4 +1,4 @@
-(function setupProjects() {
+function setupProjects() {
   const select = document.getElementById('year');
   const chart = document.getElementById('chart');
 
@@ -21,4 +21,4 @@
     chart.src = `Images/BookProjectImages/genre_distribution_${year}.png`;
     chart.alt = `Genre Distribution Pie Chart for ${year}`;
   });
-})();
+}
