@@ -1,4 +1,35 @@
-<!-- projects.html -->
-<h3>Book Stats</h3>
-<p>A simple Python project summarizing info from all the books I've read.</p>
+<head>
+  <title>Genre Distribution</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 2em; }
+    img { max-width: 90%; height: auto; margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Fiction Genre Distribution</h1>
+  <label for="year">Choose a year:</label>
+  <select id="year">
+    <!-- Populate years 2009-2023 -->
+    <script>
+      for (let year = 2009; year <= 2023; year++) {
+        document.write(`<option value="${year}">${year}</option>`);
+      }
+    </script>
+  </select>
+
+  <div>
+    <img id="chart" src="Images/BookProjectImages/genre_distribution_2009.png" alt="Genre Distribution Pie Chart">
+  </div>
+
+  <script>
+    const select = document.getElementById('year');
+    const chart = document.getElementById('chart');
+
+    select.addEventListener('change', () => {
+      const year = select.value;
+      chart.src = `Images/BookProjectImages/genre_distribution_${year}.png`;
+      chart.alt = `Genre Distribution Pie Chart for ${year}`;
+    });
+  </script>
+</body>
 
