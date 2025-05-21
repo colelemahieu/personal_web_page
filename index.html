@@ -77,14 +77,12 @@
     <a onclick="showSection('home')">Home</a>
     <a onclick="showSection('projects')">Projects</a>
     <a onclick="showSection('cv')">CV</a>
-    <a onclick="showSection('contact')">Contact</a>
   </nav>
 
   <!-- Sections -->
   <section id="home" class="content active"></section>
   <section id="projects" class="content"></section>
   <section id="cv" class="content"></section>
-  <section id="contact" class="content"></section>
 
   <script>
     function showSection(id) {
@@ -117,8 +115,8 @@
 
     // Initial load
     document.addEventListener('DOMContentLoaded', () => {
-      loadSection('home');     // Optional: if you want Home content loaded from file
-      loadSection('projects'); // Preload this if you want to test
+      loadSection('home');     
+      loadSection('projects'); 
     });
   </script>
 
