@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cole Le Mahieu</title>
   <style>
-    /* CSS RESET */
     * {
       margin: 0;
       padding: 0;
@@ -61,7 +60,7 @@
 </head>
 <body>
 
-  <div class="site-title">Cole Le Mahieu X</div>
+  <div class="site-title">Cole Le Mahieu Y</div>
 
   <nav>
     <a onclick="showSection('home')">Home</a>
@@ -70,37 +69,45 @@
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
-  <!-- Page sections -->
+  <!-- Sections -->
   <section id="home" class="content active"></section>
   <section id="projects" class="content"></section>
   <section id="cv" class="content"></section>
-  <section id="contact" class="content">
-    <p>in progress</p>
-  </section>
+  <section id="contact" class="content"></section>
 
-  <!-- Dynamic section loader -->
   <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.content');
+      sections.forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById(id);
+      target.classList.add('active');
+      loadSection(id);
+    }
+
+    function loadSection(id) {
+      const htmlPath = `menu/${id}.html`;
+      const jsPath = `menu/${id}.js`;
+
+      fetch(htmlPath)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          loadScript(jsPath);
+        })
+        .catch(err => console.error(`Error loading ${id}:`, err));
+    }
+
+    function loadScript(src) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+
+    // Initial load
     document.addEventListener('DOMContentLoaded', () => {
-      function showSection(id) {
-        const sections = document.querySelectorAll('.content');
-        sections.forEach(sec => sec.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-      }
-
-      window.showSection = showSection;
-
-      function loadSectionContent(id, path) {
-        fetch(path)
-          .then(res => res.text())
-          .then(data => {
-            document.getElementById(id).innerHTML = data;
-          })
-          .catch(err => console.error(`Failed to load ${id}:`, err));
-      }
-
-      loadSectionContent('home', 'menu/home.html');
-      loadSectionContent('projects', 'menu/projects.html');
-      loadSectionContent('cv', 'menu/cv.html');
+      loadSection('home');     // Optional: if you want Home content loaded from file
+      loadSection('projects'); // Preload this if you want to test
     });
   </script>
 
