@@ -1,30 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Genre Distribution</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2em; }
-    img { max-width: 90%; height: auto; margin-top: 1em; }
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2em;
+      margin: 0;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+      margin-top: 1em;
+    }
   </style>
 </head>
 <body>
   <h1>Fiction Genre Distribution</h1>
+
   <label for="year">Choose a year:</label>
-  <select id="year">
-    <!-- Populate years 2009-2023 -->
-    <script>
-      for (let year = 2009; year <= 2023; year++) {
-        document.write(`<option value="${year}">${year}</option>`);
-      }
-    </script>
-  </select>
+  <select id="year"></select>
 
   <div>
-    <img id="chart" src="Images/BookProjectImages/genre_distribution_2009.png" alt="Genre Distribution Pie Chart">
+    <img id="chart" src="Images/BookProjectImages/genre_distribution_2009.png"
+         alt="Genre Distribution Pie Chart for 2009">
   </div>
 
   <script>
     const select = document.getElementById('year');
     const chart = document.getElementById('chart');
 
+    // Populate dropdown with years 2009–2023
+    for (let year = 2009; year <= 2023; year++) {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      select.appendChild(option);
+    }
+
+    // Set default year
+    select.value = '2009';
+
+    // Update chart when dropdown changes
     select.addEventListener('change', () => {
       const year = select.value;
       chart.src = `Images/BookProjectImages/genre_distribution_${year}.png`;
@@ -32,4 +52,6 @@
     });
   </script>
 </body>
+</html>
+
 
