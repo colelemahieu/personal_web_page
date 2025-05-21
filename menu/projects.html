@@ -4,26 +4,6 @@
 <select id="year"></select>
 
 <div>
-  <img id="chart" src="Images/BookProjectImages/genre_distribution_2009.png"
-       alt="Genre Distribution Pie Chart for 2009">
+  <img id="chart" src="Images/BookProjectImages/genre_distribution_2008.png"
+       alt="Genre Distribution Pie Chart for 2008">
 </div>
-
-<script>
-  const select = document.getElementById('year');
-  const chart = document.getElementById('chart');
-
-  for (let year = 2009; year <= 2023; year++) {
-    const option = document.createElement('option');
-    option.value = year;
-    option.textContent = year;
-    select.appendChild(option);
-  }
-
-  select.value = '2009';
-
-  select.addEventListener('change', () => {
-    const year = select.value;
-    chart.src = `Images/BookProjectImages/genre_distribution_${year}.png`;
-    chart.alt = `Genre Distribution Pie Chart for ${year}`;
-  });
-</script>
