@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cole Le Mahieu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cole Le Mahieu X</title>
   <style>
-    
-    html, body {
+    /* CSS RESET */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 0;
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
       background-color: #D6D6CE;
       color: black;
     }
+
     .site-title {
       background-color: #33658A;
       color: white;
@@ -25,10 +28,12 @@
       padding: 20px 0;
       font-weight: bold;
     }
+
     nav {
       background-color: #33658A;
       overflow: hidden;
     }
+
     nav a {
       float: left;
       display: block;
@@ -38,14 +43,17 @@
       text-decoration: none;
       cursor: pointer;
     }
+
     nav a:hover {
       background-color: #ddd;
       color: black;
     }
+
     .content {
       padding: 20px;
       display: none;
     }
+
     .content.active {
       display: block;
     }
@@ -53,51 +61,48 @@
 </head>
 <body>
 
-<div class="site-title">Cole Le Mahieu</div>  
-  
-<nav>
-  <a onclick="showSection('home')">Home</a>
-  <a onclick="showSection('projects')">Projects</a>
-  <a onclick="showSection('cv')">CV</a>
-  <a onclick="showSection('contact')">Contact</a>
-</nav>
+  <div class="site-title">Cole Le Mahieu</div>
 
-  
-<!-- Menu sections to be dynamically loaded -->
-<section id="home" class="content active"></section>
-<section id="projects" class="content"></section>
-<section id="cv" class="content"></section>
+  <nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('projects')">Projects</a>
+    <a onclick="showSection('cv')">CV</a>
+    <a onclick="showSection('contact')">Contact</a>
+  </nav>
 
-<section id="contact" class="content">
-  <p>in progress</p>
-</section>
+  <!-- Page sections -->
+  <section id="home" class="content active"></section>
+  <section id="projects" class="content"></section>
+  <section id="cv" class="content"></section>
+  <section id="contact" class="content">
+    <p>in progress</p>
+  </section>
 
-  
-<!-- Dynamically load projects and CV menu content -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    function showSection(id) {
-      const sections = document.querySelectorAll('.content');
-      sections.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+  <!-- Dynamic section loader -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function showSection(id) {
+        const sections = document.querySelectorAll('.content');
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+      }
 
-    window.showSection = showSection;
+      window.showSection = showSection;
 
-    function loadSectionContent(id, path) {
-      fetch(path)
-        .then(res => res.text())
-        .then(data => {
-          document.getElementById(id).innerHTML = data;
-        })
-        .catch(err => console.error(`Failed to load ${id}:`, err));
-    }
+      function loadSectionContent(id, path) {
+        fetch(path)
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById(id).innerHTML = data;
+          })
+          .catch(err => console.error(`Failed to load ${id}:`, err));
+      }
 
-    loadSectionContent('home', 'menu/home.html');
-    loadSectionContent('projects', 'menu/projects.html');
-    loadSectionContent('cv', 'menu/cv.html');
-  });
-</script>
+      loadSectionContent('home', 'menu/home.html');
+      loadSectionContent('projects', 'menu/projects.html');
+      loadSectionContent('cv', 'menu/cv.html');
+    });
+  </script>
 
 </body>
 </html>
