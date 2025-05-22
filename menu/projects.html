@@ -3,12 +3,22 @@
 <p class="note">*Technically, each year refers to the time duration from one birthday in that year to the next. This unfortunate documentation choice was began in grade school and is too late to stop now.</p>
 
 <h3>Books Summarized</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
-  <img src="Images/BookProjectImages/genre_distribution_all.png" alt="Genre Distribution Pie Chart All Years" style="width: 300px; height: 300px; object-fit: contain;">
-  <label for="pagesPlot">Select pages plots:</label>
-  <select id="pagesPlot"></select>
-  <img src="Images/BookProjectImages/total_pages_per_year.png" alt="Total Pages per Year" style="width: 300px; height: 200px; object-fit: contain;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+  <!-- Left image -->
+  <img src="Images/BookProjectImages/genre_distribution_all.png" 
+       alt="Genre Distribution Pie Chart All Years" 
+       style="width: 300px; height: 300px; object-fit: contain;">
+
+  <!-- Right side: label + select stacked, then second image below -->
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <label for="pagesPlot" style="margin-bottom: 4px;">Select pages plots:</label>
+    <select id="pagesPlot" style="width: 150px; height: auto;"></select>
+    <img src="Images/BookProjectImages/total_pages_per_year.png" 
+         alt="Total Pages per Year" 
+         style="width: 300px; height: 200px; object-fit: contain; margin-top: 12px;">
+  </div>
 </div>
+
 
 
 <h3>Books by Year</h3>
