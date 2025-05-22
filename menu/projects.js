@@ -7,14 +7,14 @@ function setupProjects() {
     return;
   }
 
-  for (let year = 2008; year <= 2023; year++) {
+  for (let year = 2007; year <= 2023; year++) {
     const option = document.createElement('option');
     option.value = year;
     option.textContent = year;
     select.appendChild(option);
   }
 
-  select.value = '2008';
+  select.value = '2007';
 
   select.addEventListener('change', () => {
     const year = select.value;
