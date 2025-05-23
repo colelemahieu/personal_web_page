@@ -33,8 +33,8 @@ function setupProjects() {
       },
       {
         value: "average_pages_per_year.png",
-        text: "Average Pages per Year",
-        alt: "Average Pages per Year"
+        text: "Avg Book Length per Year",
+        alt: "Avg Book Length per Year"
       }
     ];
 
