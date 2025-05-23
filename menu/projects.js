@@ -50,7 +50,7 @@ function setupProjects() {
       pagesSelect.appendChild(option);
     });
 
-    pagesSelect.value = "total_pages_per_year.png";
+    pagesSelect.value = "books_per_year.png";
 
     pagesSelect.addEventListener('change', () => {
       const selected = pagesSelect.value;
