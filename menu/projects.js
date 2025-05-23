@@ -1,8 +1,10 @@
 function setupProjects() {
-  const select = document.getElementById('year');
-  const chart = document.getElementById('chart');
+  const genreSelect = document.getElementById('genrePlot');
+  const genreChart = document.getElementById('genreChart');
   const pagesSelect = document.getElementById('pagesPlot');
   const pagesChart = document.getElementById('pagesChart');
+  const select = document.getElementById('year');
+  const chart = document.getElementById('chart');
 
   // Genre by year dropdown
   if (select && chart) {
