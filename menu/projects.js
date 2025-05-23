@@ -30,12 +30,12 @@ function setupProjects() {
     const options = [
       {
         value: "genre_distribution_all.png",
-        text: "Genre; All Years",
+        text: "Genre; all years",
         alt: "genre distribution for all years"
       },
       {
         value: "genre_distribution_by_pages.png",
-        text: "Genre; All Pages",
+        text: "Genre; all pages",
         alt: "genre distribution for all pages"
       }
     ];
