@@ -63,17 +63,17 @@ function setupProjects() {
     const options = [
       {
         value: "books_per_year.png",
-        text: "Fiction Books per Year",
+        text: "Fiction books per year",
         alt: "Number Fiction Books per Year"
       },
       {
         value: "total_pages_per_year.png",
-        text: "Total Pages per Year",
+        text: "Total pages per year",
         alt: "Total Pages per Year"
       },
       {
         value: "average_pages_per_year.png",
-        text: "Avg Book Length per Year",
+        text: "Avg book length per year",
         alt: "Avg Book Length per Year"
       }
     ];
