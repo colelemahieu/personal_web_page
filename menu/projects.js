@@ -44,16 +44,16 @@ function setupProjects() {
       const option = document.createElement('option');
       option.value = opt.value;
       option.textContent = opt.text;
-      pagesSelect.appendChild(option);
+      genreSelect.appendChild(option);
     });
 
-    pagesSelect.value = "genre_distribution_all.png";
+    genreSelect.value = "genre_distribution_all.png";
 
-    pagesSelect.addEventListener('change', () => {
-      const selected = pagesSelect.value;
+    genreSelect.addEventListener('change', () => {
+      const selected = genreSelect.value;
       const selectedOption = options.find(opt => opt.value === selected);
-      pagesChart.src = `Images/BookProjectImages/${selected}`;
-      pagesChart.alt = selectedOption.alt;
+      genreChart.src = `Images/BookProjectImages/${selected}`;
+      genreChart.alt = selectedOption.alt;
     });
   }
 
