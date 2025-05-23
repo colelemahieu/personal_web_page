@@ -28,7 +28,7 @@ function setupProjects() {
     const options = [
       {
         value: "books_per_year.png",
-        text: "Number Books per Year",
+        text: "Fiction Books per Year",
         alt: "Number Fiction Books per Year"
       },
       {
