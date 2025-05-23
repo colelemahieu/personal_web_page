@@ -4,7 +4,7 @@ function setupProjects() {
   const pagesSelect = document.getElementById('pagesPlot');
   const pagesChart = document.getElementById('pagesChart');
 
-  // Genre/year dropdown
+  // Genre by year dropdown
   if (select && chart) {
     for (let year = 2007; year <= 2023; year++) {
       const option = document.createElement('option');
@@ -35,6 +35,11 @@ function setupProjects() {
         value: "average_pages_per_year.png",
         text: "Avg Book Length per Year",
         alt: "Avg Book Length per Year"
+      }
+      {
+        value: "books_per_year.png",
+        text: "Number Books per Year",
+        alt: "Number Fiction Books per Year"
       }
     ];
 
