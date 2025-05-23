@@ -24,6 +24,39 @@ function setupProjects() {
     });
   }
 
+
+  // Genre plot dropdown
+  if (genreSelect && genreChart) {
+    const options = [
+      {
+        value: "genre_distribution_all.png",
+        text: "Genre; All Years",
+        alt: "genre distribution for all years"
+      },
+      {
+        value: "genre_distribution_by_pages.png",
+        text: "Genre; All Pages",
+        alt: "genre distribution for all pages"
+      }
+    ];
+
+    options.forEach(opt => {
+      const option = document.createElement('option');
+      option.value = opt.value;
+      option.textContent = opt.text;
+      pagesSelect.appendChild(option);
+    });
+
+    pagesSelect.value = "genre_distribution_all.png";
+
+    pagesSelect.addEventListener('change', () => {
+      const selected = pagesSelect.value;
+      const selectedOption = options.find(opt => opt.value === selected);
+      pagesChart.src = `Images/BookProjectImages/${selected}`;
+      pagesChart.alt = selectedOption.alt;
+    });
+  }
+
   
   // Pages plot dropdown
   if (pagesSelect && pagesChart) {
@@ -61,4 +94,6 @@ function setupProjects() {
       pagesChart.alt = selectedOption.alt;
     });
   }
+
+  
 }
