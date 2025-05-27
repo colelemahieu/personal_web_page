@@ -5,6 +5,10 @@ function setupProjects() {
   const pagesChart = document.getElementById('pagesChart');
   const select = document.getElementById('year');
   const chart = document.getElementById('chart');
+  // Book search logic
+  const input = document.getElementById('searchInput');
+  const tableBody = document.querySelector('#resultsTable tbody');
+  let books = [];
 
   // Genre by year dropdown
   if (select && chart) {
@@ -92,6 +96,47 @@ function setupProjects() {
       const selectedOption = options.find(opt => opt.value === selected);
       pagesChart.src = `Images/BookProjectImages/${selected}`;
       pagesChart.alt = selectedOption.alt;
+    });
+  }
+
+  // book functions
+  function renderBooks(filteredBooks) {
+    if (!tableBody) return;
+    tableBody.innerHTML = '';
+    filteredBooks.forEach(book => {
+      const row = `<tr>
+        <td>${book.Title}</td>
+        <td>${book.Author}</td>
+        <td>${book.Pages}</td>
+        <td>${book.Year}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
+
+  function filterBooks(query) {
+    query = query.toLowerCase();
+    return books.filter(book =>
+      book.Title?.toLowerCase().includes(query) ||
+      book.Author?.toLowerCase().includes(query)
+    );
+  }
+
+  if (input && tableBody) {
+    input.addEventListener('input', () => {
+      renderBooks(filterBooks(input.value));
+    });
+
+    Papa.parse('books.csv', {
+      download: true,
+      header: true,
+      complete: function(results) {
+        books = results.data.filter(row => row.Title); // Remove blanks
+        renderBooks(books);
+      },
+      error: function(err) {
+        console.error("Error loading CSV:", err);
+      }
     });
   }
 
