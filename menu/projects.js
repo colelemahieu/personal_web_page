@@ -100,10 +100,18 @@ function setupProjects() {
     });
   }
 
-  // book functions
+  // Book Search Functions
+  // Debounce function to reduce input frequency
+  function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn(...args), delay);
+    };
+  }
+  
   function renderBooks(filteredBooks) {
     if (!tableBody) return;
-
     tableBody.innerHTML = '';
 
     if (filteredBooks.length === 0) {
@@ -113,7 +121,8 @@ function setupProjects() {
 
     table.style.display = 'table';
 
-    filteredBooks.forEach(book => {
+    const maxResults = 50;
+    filteredBooks.slice(0, maxResults).forEach(book => {
       const row = `<tr>
         <td>${book.Title}</td>
         <td>${book.Author}</td>
@@ -127,28 +136,33 @@ function setupProjects() {
   function filterBooks(query) {
     query = query.toLowerCase();
     return books.filter(book =>
-      book.Title.toLowerCase().includes(query) ||
-      book.Author.toLowerCase().includes(query)
+      book._titleLower.includes(query) || book._authorLower.includes(query)
     );
   }
 
   if (input) {
-    input.addEventListener('input', () => {
+    input.addEventListener('input', debounce(() => {
       const query = input.value.trim();
       if (query === '') {
         table.style.display = 'none';
         return;
       }
       renderBooks(filterBooks(query));
-    });
+    }, 200));
 
-    // Load CSV on page load
+    // Load CSV and preprocess for fast search
     Papa.parse('Files/books.csv', {
       download: true,
       header: true,
       complete: function(results) {
-        books = results.data.filter(row => row.Title); // skip blank rows
-        // Don't render yet — wait for user to search
+        books = results.data
+          .filter(row => row.Title) // skip blanks
+          .map(book => ({
+            ...book,
+            _titleLower: book.Title.toLowerCase(),
+            _authorLower: book.Author.toLowerCase()
+          }));
+        // No render yet; wait for user input
       },
       error: function(err) {
         console.error("Error loading CSV:", err);
