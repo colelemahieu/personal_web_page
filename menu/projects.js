@@ -7,7 +7,8 @@ function setupProjects() {
   const chart = document.getElementById('chart');
   // Book search logic
   const input = document.getElementById('searchInput');
-  const tableBody = document.querySelector('#resultsTable tbody');
+  const table = document.getElementById('resultsTable');
+  const tableBody = table ? table.querySelector('tbody') : null;
   let books = [];
 
   // Genre by year dropdown
@@ -102,7 +103,16 @@ function setupProjects() {
   // book functions
   function renderBooks(filteredBooks) {
     if (!tableBody) return;
+
     tableBody.innerHTML = '';
+
+    if (filteredBooks.length === 0) {
+      table.style.display = 'none';
+      return;
+    }
+
+    table.style.display = 'table';
+
     filteredBooks.forEach(book => {
       const row = `<tr>
         <td>${book.Title}</td>
@@ -117,22 +127,28 @@ function setupProjects() {
   function filterBooks(query) {
     query = query.toLowerCase();
     return books.filter(book =>
-      book.Title?.toLowerCase().includes(query) ||
-      book.Author?.toLowerCase().includes(query)
+      book.Title.toLowerCase().includes(query) ||
+      book.Author.toLowerCase().includes(query)
     );
   }
 
-  if (input && tableBody) {
+  if (input) {
     input.addEventListener('input', () => {
-      renderBooks(filterBooks(input.value));
+      const query = input.value.trim();
+      if (query === '') {
+        table.style.display = 'none';
+        return;
+      }
+      renderBooks(filterBooks(query));
     });
 
+    // Load CSV on page load
     Papa.parse('Files/books.csv', {
       download: true,
       header: true,
       complete: function(results) {
-        books = results.data.filter(row => row.Title); // Remove blanks
-        renderBooks(books);
+        books = results.data.filter(row => row.Title); // skip blank rows
+        // Don't render yet — wait for user to search
       },
       error: function(err) {
         console.error("Error loading CSV:", err);
