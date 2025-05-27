@@ -127,7 +127,7 @@ function setupProjects() {
       renderBooks(filterBooks(input.value));
     });
 
-    Papa.parse('books.csv', {
+    Papa.parse('Files/books.csv', {
       download: true,
       header: true,
       complete: function(results) {
