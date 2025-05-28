@@ -1,28 +1,26 @@
-
 function setupPhysics_research() {
   const list = document.getElementById('research-list');
-  if (!list) return;
+  const modal = document.getElementById('research-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const closeBtn = modal.querySelector('.modal-close');
 
   list.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', event => {
       event.preventDefault();
-      const title = link.getAttribute('data-title');
-      const content = link.getAttribute('data-content');
-      openPopup(content, title);
+      modalTitle.textContent = link.getAttribute('data-title');
+      modalBody.textContent = link.getAttribute('data-content');
+      modal.style.display = 'block';
     });
   });
 
-  function openPopup(content, title) {
-    const popup = window.open("", title, "width=400,height=300,scrollbars=yes");
-    popup.document.write(`
-      <html>
-        <head><title>${title}</title></head>
-        <body>
-          <h2>${title}</h2>
-          <p>${content}</p>
-        </body>
-      </html>
-    `);
-    popup.document.close();
-  }
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+  };
+
+  window.onclick = (event) => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
 }
