@@ -137,6 +137,7 @@ nav a:hover {
 }
 
 .profile-pic {
+  margin-left: 20px;
   width: 225px;
   height: auto;
   border-radius: 8px;
