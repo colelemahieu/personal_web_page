@@ -6,4 +6,5 @@ window.physicsResearchContent = {
 
   "Quantum Chromodynamics": `
    <p>In progress</p>
+   `
 };
