@@ -32,27 +32,45 @@
       loadSection(id);
     }
 
-    function loadSection(id) {
-      const htmlPath = `menu/${id}.html`;
-      const jsPath = `menu/${id}.js`;
+function loadSection(id) {
+  const htmlPath = `menu/${id}.html`;
+  const jsPath = `menu/${id}.js`;
 
-      fetch(htmlPath)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
+  fetch(htmlPath)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById(id).innerHTML = html;
 
+      // Check if this is the physics section
+      if (id === 'physics_research') {
+        // Load modal content first
+        const contentScript = document.createElement('script');
+        contentScript.src = 'menu/physics_modalContent.js';  // Load modal content
+        contentScript.onload = () => {
+          // Then load the physics_research.js logic
           const script = document.createElement('script');
           script.src = jsPath;
           script.onload = () => {
             const setupFn = window[`setup${capitalize(id)}`];
-            if (typeof setupFn === 'function') {
-              setupFn();
-            }
+            if (typeof setupFn === 'function') setupFn();
           };
           document.body.appendChild(script);
-        })
-        .catch(err => console.error(`Error loading ${id}:`, err));
-    }
+        };
+        document.body.appendChild(contentScript);
+      } else {
+        // Normal load for other sections
+        const script = document.createElement('script');
+        script.src = jsPath;
+        script.onload = () => {
+          const setupFn = window[`setup${capitalize(id)}`];
+          if (typeof setupFn === 'function') setupFn();
+        };
+        document.body.appendChild(script);
+      }
+    })
+    .catch(err => console.error(`Error loading ${id}:`, err));
+}
+
 
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
