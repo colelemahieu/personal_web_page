@@ -8,8 +8,11 @@ function setupPhysics_research() {
   list.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', event => {
       event.preventDefault();
-      modalTitle.textContent = link.getAttribute('data-title');
-      modalBody.textContent = link.getAttribute('data-content');
+      const title = link.getAttribute('data-title');
+      const content = window.physicsResearchContent?.[title] || 'Content coming soon.';
+
+      modalTitle.textContent = title;
+      modalBody.innerHTML = content;  // Changed from textContent to innerHTML
       modal.style.display = 'block';
     });
   });
