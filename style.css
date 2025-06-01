@@ -127,6 +127,14 @@ nav a:hover {
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
+} 
+
+#research-modal i {
+  display: block;
+  margin: 0 0 0.5em 0;
+  font-style: italic;
+  font-size: 1.1em;
+  color: #33658A;
 }
 
 .modal-close {
