@@ -1,9 +1,9 @@
 window.physicsResearchContent = {
   "Working at CERN": `
     <i style="color: #33658A;">ZDC Data Acquisition</i>
-    <p>While at CERN in the Fall of 2022, I helped prepare the CMS Zero Degree Calorimeters (ZDCs) for data taking. 
-    There are two ZDCs, each located 140 meters down the beamline from either side of the CMS interaction point. Their 
-    purpose is to detect energy deposits from neutral particles (photons and neutrons) resulting from heavy ion collisions. 
+    <p>In the Fall of 2022, I traveled to CERN to help prepare the CMS Zero Degree Calorimeters (ZDCs) for data taking. 
+    CMS has two ZDC detectors, each located 140 meters down the beamline from either side of the interaction point. Their 
+    purpose is to detect energy deposits from the neutral particles (photons and neutrons) resulting from heavy ion collisions. 
     Because of their neutral charge, these particles are unaffected by CMS magnets and continue traveling down the beamline 
     until they hit the ZDCs.</p>
     <p>For my first task at CERN, I tested the performance of one of these ZDCs above ground. After operational tests, the 
