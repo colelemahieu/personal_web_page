@@ -11,7 +11,7 @@ window.physicsResearchContent = {
     to ensure successful transfer of data from the detector to above-ground electronics.</p>
     <figure style="text-align: center;">
       <img src="Images/lhc_tunnel.jpg" alt="LHC Tunnel" style="display: block; margin: auto; max-width: 60%; height: auto;">
-      <figcaption>The Large Hadron Collider tunnel at CERN</figcaption>
+      <figcaption>One of the ZDC detectors in the LHC tunnel</figcaption>
     </figure>
 
     <i style="color: #33658A;">CMS Control Center Shifts</i>
