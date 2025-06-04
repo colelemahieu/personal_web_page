@@ -13,7 +13,7 @@ function setupProjects() {
 
   // Genre by year dropdown
   if (select && chart) {
-    for (let year = 2007; year <= 2023; year++) {
+    for (let year = 2007; year <= 2024; year++) {
       const option = document.createElement('option');
       option.value = year;
       option.textContent = year;
