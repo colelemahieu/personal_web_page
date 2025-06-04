@@ -1,4 +1,19 @@
 Year,Title,Author,Type,Genre,Pages
+2024,Macbeth,William Shakespeare,F,classic,191
+2024,Robinson Crusoe,Daniel Defoe,F,classic,316
+2024,Oliver Twist,Charles Dickens,F,classic,442
+2024,A Study in Scarlet and The Sign of the Four,Sir Arthur Conan Doyle,F,mystery,204
+2024,The Children of Hurin,J.R.R. Tolkien,F,fantasy,292
+2024,The Nature of Middle-Earth,J.R.R. Tolkien,F,fantasy,412
+2024,Children of Dune ,Frank Herbert,F,scifi,477
+2024,Project Pope,Clifford D. Simak,F,scifi,311
+2024,To Your Scattered Bodies Go,Philip Jose Farmer,F,scifi,222
+2024,Captive Universe,Harry Harrison,F,scifi,160
+2024,The Stainless Steel Rat's Revenger,Harry Harrison,F,scifi,191
+2024,Roadmarks,Roger Zelazny,F,scifi,185
+2024,Bones of the Earth ,Michael Swanwick,F,scifi,383
+2024,Doomsday Book,Connie Willis,F,scifi,578
+2024,Project Hail Mary,Andy Weir,F,scifi,476
 2023,David Copperfield,Charles Dickens,F,classic,719
 2023,Hard Times,Charles Dickens,F,classic,292
 2023,Dracula,Bram Stoker,F,classic,362
@@ -6,7 +21,7 @@ Year,Title,Author,Type,Genre,Pages
 2023,The Man Who Was Thursday,G.K. Chesterton,F,fiction,110
 2023,The Fellowship of the Ring,J.R.R. Tolkien,F,fantasy,407
 2023,The Two Towers,J.R.R. Tolkien,F,fantasy,331
-2023,The Return of the Kind,J.R.R. Tolkien,F,fantasy,392
+2023,The Return of the King,J.R.R. Tolkien,F,fantasy,392
 2023,A Canticle for Leibowitz,Walter M. Miller Jr.,F,scifi,278
 2023,Death is a Lonely Business,Ray Bradbury,F,mystery,232
 2023,The Man in the High Castle,Philip K. Dick,F,scifi,274
@@ -44,7 +59,7 @@ Year,Title,Author,Type,Genre,Pages
 2021,Harry Potter and the Sorcerer's Stone,J.K. Rowling,F,fantasy,309
 2021,Harry Potter and the Chamber of Secrets,J.K. Rowling,F,fantasy,341
 2021,Harry Potter and the Prisoner of Azkaban,J.K. Rowling,F,fantasy,435
-2021,Harray Potter and the Goblet of Fire,J.K. Rowling,F,fantasy,734
+2021,Harry Potter and the Goblet of Fire,J.K. Rowling,F,fantasy,734
 2021,Harry Potter and the Order of the Phoenix,J.K. Rowling,F,fantasy,870
 2021,Harry Potter and the Half-Blood Prince,J.K. Rowling,F,fantasy,652
 2021,Harry Potter and the Deathly Hallows,J.K. Rowling,F,fantasy,759
