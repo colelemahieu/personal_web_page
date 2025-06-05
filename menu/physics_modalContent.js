@@ -17,7 +17,7 @@ window.physicsResearchContent = {
     <i style="color: #33658A;">CMS Control Center Shifts</i>
   `,
 
-  "Quantum Chromodynamics": `
+  "Compact Muon Solenoid (CMS) Detector": `
    <p>In progress</p>
    `
 };
