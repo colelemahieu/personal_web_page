@@ -147,6 +147,11 @@ nav a:hover {
   cursor: pointer;
 }
 
+#research-list li {
+  margin-bottom: 0.6em;
+}
+
+
 .modal-close:hover {
   color: #000;
 }
