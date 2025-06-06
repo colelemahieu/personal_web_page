@@ -156,16 +156,16 @@ function setupProjects() {
       // Cancel any previous scroll attempts
       clearTimeout(scrollTimeout);
 
-      // If results, scroll to the last one after a short delay
+      // If results, scroll to the last one after short delay
       if (matches.length > 0) {
         scrollTimeout = setTimeout(() => {
           const lastRow = tableBody?.lastElementChild;
           if (lastRow) {
             lastRow.scrollIntoView({ behavior: 'smooth' });
           }
-        }, 300);
+        }, 500);
       }
-    }, 200));
+    }, 500));
 
     // Load CSV and preprocess
     Papa.parse('Files/books.csv', {
