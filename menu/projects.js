@@ -139,8 +139,10 @@ function setupProjects() {
     );
   }
 
-  // Input search + scroll behavior
+  // Input search + smart scroll behavior
   if (input) {
+    let scrollTimeout;
+
     input.addEventListener('input', debounce(() => {
       const query = input.value.trim();
       if (query === '') {
@@ -151,15 +153,21 @@ function setupProjects() {
       const matches = filterBooks(query);
       renderBooks(matches);
 
+      // Cancel any previous scroll attempts
+      clearTimeout(scrollTimeout);
+
+      // If results, scroll to the last one after a short delay
       if (matches.length > 0) {
-        const lastRow = tableBody?.lastElementChild;
-        if (lastRow) {
-          lastRow.scrollIntoView({ behavior: 'smooth' });
-        }
+        scrollTimeout = setTimeout(() => {
+          const lastRow = tableBody?.lastElementChild;
+          if (lastRow) {
+            lastRow.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
       }
     }, 200));
 
-    // Load CSV and preprocess for fast search
+    // Load CSV and preprocess
     Papa.parse('Files/books.csv', {
       download: true,
       header: true,
