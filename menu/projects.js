@@ -120,19 +120,25 @@ function setupProjects() {
     }
 
     table.style.display = 'table';
-    table.scrollIntoView({ behavior: 'smooth' });
 
     const maxResults = 50;
     filteredBooks.slice(0, maxResults).forEach(book => {
-      const row = `<tr>
-        <td>${book.Title}</td>
-        <td>${book.Author}</td>
-        <td>${book.Pages}</td>
-        <td>${book.Year}</td>
-      </tr>`;
-      tableBody.innerHTML += row;
-    });
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${book.Title}</td>
+      <td>${book.Author}</td>
+      <td>${book.Pages}</td>
+      <td>${book.Year}</td>
+    `;
+    tableBody.appendChild(row);
+  });
+
+  // Scroll to the last row in the table
+  const lastRow = tableBody.lastElementChild;
+  if (lastRow) {
+    lastRow.scrollIntoView({ behavior: 'smooth' });
   }
+}     
 
   function filterBooks(query) {
     query = query.toLowerCase();
