@@ -5,7 +5,6 @@ function setupProjects() {
   const pagesChart = document.getElementById('pagesChart');
   const select = document.getElementById('year');
   const chart = document.getElementById('chart');
-  // Book search logic
   const input = document.getElementById('searchInput');
   const table = document.getElementById('resultsTable');
   const tableBody = table ? table.querySelector('tbody') : null;
@@ -28,7 +27,6 @@ function setupProjects() {
       chart.alt = `Genre Distribution Pie Chart for ${year}`;
     });
   }
-
 
   // Genre plot dropdown
   if (genreSelect && genreChart) {
@@ -62,7 +60,6 @@ function setupProjects() {
     });
   }
 
-  
   // Pages plot dropdown
   if (pagesSelect && pagesChart) {
     const options = [
@@ -100,8 +97,7 @@ function setupProjects() {
     });
   }
 
-  // Book Search Functions
-  // Debounce function to reduce input frequency
+  // Debounce function
   function debounce(fn, delay) {
     let timeout;
     return (...args) => {
@@ -109,7 +105,8 @@ function setupProjects() {
       timeout = setTimeout(() => fn(...args), delay);
     };
   }
-  
+
+  // Render book search results
   function renderBooks(filteredBooks) {
     if (!tableBody) return;
     tableBody.innerHTML = '';
@@ -123,23 +120,18 @@ function setupProjects() {
 
     const maxResults = 50;
     filteredBooks.slice(0, maxResults).forEach(book => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${book.Title}</td>
-      <td>${book.Author}</td>
-      <td>${book.Pages}</td>
-      <td>${book.Year}</td>
-    `;
-    tableBody.appendChild(row);
-  });
-
-  // Scroll to the last row in the table
-  const lastRow = tableBody.lastElementChild;
-  if (lastRow) {
-    lastRow.scrollIntoView({ behavior: 'smooth' });
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${book.Title}</td>
+        <td>${book.Author}</td>
+        <td>${book.Pages}</td>
+        <td>${book.Year}</td>
+      `;
+      tableBody.appendChild(row);
+    });
   }
-}     
 
+  // Filter logic
   function filterBooks(query) {
     query = query.toLowerCase();
     return books.filter(book =>
@@ -147,6 +139,7 @@ function setupProjects() {
     );
   }
 
+  // Input search + scroll behavior
   if (input) {
     input.addEventListener('input', debounce(() => {
       const query = input.value.trim();
@@ -154,7 +147,16 @@ function setupProjects() {
         table.style.display = 'none';
         return;
       }
-      renderBooks(filterBooks(query));
+
+      const matches = filterBooks(query);
+      renderBooks(matches);
+
+      if (matches.length > 0) {
+        const lastRow = tableBody?.lastElementChild;
+        if (lastRow) {
+          lastRow.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }, 200));
 
     // Load CSV and preprocess for fast search
@@ -169,13 +171,10 @@ function setupProjects() {
             _titleLower: book.Title.toLowerCase(),
             _authorLower: book.Author.toLowerCase()
           }));
-        // No render yet; wait for user input
       },
       error: function(err) {
         console.error("Error loading CSV:", err);
       }
     });
   }
-
-  
 }
