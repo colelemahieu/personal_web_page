@@ -120,6 +120,7 @@ function setupProjects() {
     }
 
     table.style.display = 'table';
+    table.scrollIntoView({ behavior: 'smooth' });
 
     const maxResults = 50;
     filteredBooks.slice(0, maxResults).forEach(book => {
