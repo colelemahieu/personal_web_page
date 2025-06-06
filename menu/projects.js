@@ -160,9 +160,17 @@ function setupProjects() {
       if (matches.length > 0) {
         scrollTimeout = setTimeout(() => {
           if (table) {
-            table.scrollIntoView({ behavior: 'smooth' });
+            const offset = -80; 
+            
+            const tableTop = table.getBoundingClientRect().top + window.pageYOffset + offset;
+
+            window.scrollTo({
+              top: tableTop,
+              behavior: 'smooth'
+            });
           }
         }, 500);
+
       }
     }, 500));
 
