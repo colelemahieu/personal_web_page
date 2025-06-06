@@ -159,9 +159,8 @@ function setupProjects() {
       // If results, scroll to the last one after short delay
       if (matches.length > 0) {
         scrollTimeout = setTimeout(() => {
-          const lastRow = tableBody?.lastElementChild;
-          if (lastRow) {
-            lastRow.scrollIntoView({ behavior: 'smooth' });
+          if (table) {
+            table.scrollIntoView({ behavior: 'smooth' });
           }
         }, 500);
       }
