@@ -196,3 +196,41 @@ nav a:hover {
     max-width: 500px;
   }
 }
+
+.research-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+.research-text {
+  flex: 2;
+  min-width: 250px;
+}
+
+.research-image {
+  flex: 1;
+  min-width: 250px;
+}
+
+.research-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Responsive layout for narrow screens */
+@media (max-width: 768px) {
+  .research-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+  }
+
+  .research-text, .research-image {
+    width: 100%;
+    max-width: 600px;
+  }
+}
