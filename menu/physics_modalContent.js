@@ -18,6 +18,8 @@ window.physicsResearchContent = {
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
-   <p>In progress</p>
+   <figure style="text-align: center;">
+      <img src="Images/cms_detector.png" alt="CMS detector" style="display: block; margin: auto; max-width: 60%; height: auto;">
+    </figure>
    `
 };
