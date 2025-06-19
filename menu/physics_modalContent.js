@@ -18,8 +18,11 @@ window.physicsResearchContent = {
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
-   <figure style="text-align: center;">
-      <img src="Images/cms_detector.png" alt="CMS detector" style="display: block; margin: auto; max-width: 85%; height: auto;">
-    </figure>
-   `
+    <div>
+    <img src="Images/cms_detector.png" alt="CMS detector" style="display: block; margin: auto; max-width: 95%; height: auto;">
+    <p class="note">Image courtesy of the CMS Collaboration, CERN. Source: https://cms.cern/detector</p>
+  </div>
+   <p>CMS is one of several detectors located around the ring of the Large Hadron Collider. It acts as a sort of camera, taking
+   pictures of high energy particle collisions and helping physicists understand more about elementary particles and the forces
+   that govern their interactions.</p>
 };
