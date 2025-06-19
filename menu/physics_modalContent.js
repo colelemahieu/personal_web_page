@@ -25,4 +25,5 @@ window.physicsResearchContent = {
    <p>CMS is one of several detectors located around the ring of the Large Hadron Collider. It acts as a sort of camera, taking
    pictures of high energy particle collisions and helping physicists understand more about elementary particles and the forces
    that govern their interactions.</p>
+   `
 };
