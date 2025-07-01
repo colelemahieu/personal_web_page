@@ -17,6 +17,10 @@ window.physicsResearchContent = {
     <i style="color: #33658A;">CMS Control Center Shifts</i>
   `,
 
+  "Ultraperipheral Collisions (UPCs)": `
+    <p></p> 
+  `,
+
   "Compact Muon Solenoid (CMS) Detector": `
     <div>
     <img src="Images/cms_detector.png" alt="CMS detector" style="display: block; margin: auto; max-width: 95%; height: auto;">
