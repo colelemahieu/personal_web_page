@@ -18,7 +18,8 @@ window.physicsResearchContent = {
   `,
 
   "Ultraperipheral Collisions (UPCs)": `
-    <p></p> 
+    <p>The most common type of collision studied with the CMS detector is the proton-proton collision, where opposite going beams of protons are 
+    steered into each other by powerful magnets.  </p> 
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
