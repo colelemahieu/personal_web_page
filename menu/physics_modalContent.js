@@ -18,8 +18,13 @@ window.physicsResearchContent = {
   `,
 
   "Ultraperipheral Collisions (UPCs)": `
-    <p>The most common type of collision studied with the CMS detector is the proton-proton collision, where opposite going beams of protons are 
-    steered into each other by powerful magnets.  </p> 
+    <p>Proton-proton collisions are the most common type of collision analyzed by the CMS detector. However, experimental 
+    nuclear physicists also like to study heavy-ion collisions, in which the types of particles colliding are lead ions. 
+    These types of collisions are useful in understanding how the behavior of nucleons (protons and neutrons) changes when 
+    inside the nucleus (as opposed to in isolation). Pb ions, specifically Pb-208, are used because they are a "doubly 
+    magic" nucleus, meaning they are extra stable and easier to theoretically model.</p> 
+    <p>Ultraperipheral collisions are a particle type of heavy-ion collision in which the approaching ions closely pass by each 
+    other instead of directly colliding.</p>
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
