@@ -23,6 +23,9 @@ window.physicsResearchContent = {
     These types of collisions are useful in understanding how the behavior of nucleons (protons and neutrons) changes when they
     are inside the nucleus (as opposed to in isolation). Pb ions, specifically Pb-208 ions, are used because they have a "doubly 
     magic" nucleus, meaning they are extremely stable and easier to model theoretically.</p> 
+    <figure style="text-align: center;">
+      <img src="Images/upc_cartoon.png" alt="UPC cartoon" style="display: block; margin: auto; max-width: 60%; height: auto;">
+    </figure>
     <p>Ultraperipheral collisions are a particle type of heavy-ion collision in which the approaching ions closely pass by each 
     other instead of directly colliding. Technically, this means that the impact parameter between the two ions is greater than
     twice the nuclear radius. UPCs are useful for a number of reasons.</p>
