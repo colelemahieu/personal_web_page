@@ -28,7 +28,10 @@ window.physicsResearchContent = {
     </figure>
     <p>Ultraperipheral collisions are a type of heavy-ion collision in which the approaching ions closely pass by each 
     other instead of directly colliding (see cartoon). Technically, this means that the impact parameter between the two ions is greater than
-    twice the nuclear radius. UPCs are useful for a number of reasons.</p>
+    twice the nuclear radius.</p>
+    <figure style="text-align: center;">
+      <img src="Images/jackson_field_lines.png" alt="jackson_field_lines" style="display: block; margin: auto; max-width: 60%; height: auto;">
+    </figure>
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
