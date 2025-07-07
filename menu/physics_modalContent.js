@@ -26,7 +26,7 @@ window.physicsResearchContent = {
     <figure style="text-align: center;">
       <img src="Images/upc_cartoon.png" alt="UPC cartoon" style="display: block; margin: auto; max-width: 60%; height: auto;">
     </figure>
-    <p>Ultraperipheral collisions are a particle type of heavy-ion collision in which the approaching ions closely pass by each 
+    <p>Ultraperipheral collisions are a type of heavy-ion collision in which the approaching ions closely pass by each 
     other instead of directly colliding (see cartoon). Technically, this means that the impact parameter between the two ions is greater than
     twice the nuclear radius. UPCs are useful for a number of reasons.</p>
   `,
