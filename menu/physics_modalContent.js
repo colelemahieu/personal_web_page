@@ -20,9 +20,9 @@ window.physicsResearchContent = {
   "Ultraperipheral Collisions (UPCs)": `
     <p>Proton-proton collisions are the most common type of collision analyzed by the CMS detector. However, experimental 
     nuclear physicists also like to study heavy-ion collisions, in which the types of particles colliding are lead ions. 
-    These types of collisions are useful in understanding how the behavior of nucleons (protons and neutrons) changes when they
-    are inside the nucleus (as opposed to in isolation). Pb ions, specifically Pb-208 ions, are used because they have a "doubly 
-    magic" nucleus, meaning they are extremely stable and easier to model theoretically.</p> 
+    These types of collisions are useful in understanding the behavior of nucleons (protons and neutrons) and their substructure.
+    Pb ions, specifically Pb-208 ions, are used because they have a "doubly magic" nucleus, meaning they are extremely stable 
+    and easier to model theoretically.</p> 
     <figure style="text-align: center;">
       <img src="Images/upc_cartoon.png" alt="UPC cartoon" style="display: block; margin: auto; max-width: 60%; height: auto;">
       <figcaption>Figure 1: An ultraperipheral collision.</figcaption>
