@@ -25,12 +25,14 @@ window.physicsResearchContent = {
     magic" nucleus, meaning they are extremely stable and easier to model theoretically.</p> 
     <figure style="text-align: center;">
       <img src="Images/upc_cartoon.png" alt="UPC cartoon" style="display: block; margin: auto; max-width: 60%; height: auto;">
+      <figcaption>Figure A: An ultraperipheral collision.</figcaption>
     </figure>
     <p>Ultraperipheral collisions are a type of heavy-ion collision in which the approaching ions closely pass by each 
-    other instead of directly colliding (see cartoon). Technically, this means that the impact parameter between the two ions is greater than
+    other instead of directly colliding (Figure A). Technically, this means that the impact parameter between the two ions is greater than
     twice the nuclear radius.</p>
     <figure style="text-align: center;">
       <img src="Images/jackson_field_lines.png" alt="jackson_field_lines" style="display: block; margin: auto; max-width: 60%; height: auto;">
+      <figcaption>Figure B: Electric field lines for a stationary (left) and moving (right) charged particle.</figcaption
     </figure>
   `,
 
