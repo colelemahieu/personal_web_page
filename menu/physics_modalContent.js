@@ -38,7 +38,9 @@ window.physicsResearchContent = {
     <p>At the LHC, the Pb ions in UPCs are traveling very close to the speed of light. This means relativistic effects, such as
     Lorentz contraction, become important. As the Pb ions travel closer and closer to the speed of light, the nuclei become squished
     into a kind of pancake shape. The electric field lines of the nuclei undergo a similar effect and become compressed together 
-    (Figure 2). Since electric fields are made up of photons, these conditions produce a linearly polarized source of photons. </p>
+    (Figure 2). Since electric fields are made up of photons, these conditions provide a linearly polarized source of photons. 
+    Photons from one of the Pb ions can interact with and probe the opposite going Pb ion. In this way experimental nuclear
+    physicists can investigate the inner structure of protons and neutrons.</p>
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
