@@ -32,8 +32,8 @@ window.physicsResearchContent = {
     twice the nuclear radius.</p>
     <figure style="text-align: center;">
       <img src="Images/jackson_field_lines.png" alt="jackson_field_lines" style="display: block; margin: auto; max-width: 60%; height: auto;">
-      <figcaption>Figure 2: Electric field lines for a stationary (left) and moving (right) charged particle (<i>Jackson, Classical 
-      Electrodynamics</i>).</figcaption>
+      <figcaption>Figure 2: Electric field lines for a stationary (left) and moving (right) charged particle (<cite>Classical 
+      Electrodynamics by Jackson</cite>).</figcaption>
     </figure>
     <p>At the LHC, the Pb ions in UPCs are traveling very close to the speed of light. This means relativistic effects, such as
     Lorentz contraction, become important. As the Pb ions travel closer and closer to the speed of light, the nuclei become squished
