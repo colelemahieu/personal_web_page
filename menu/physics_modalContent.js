@@ -25,15 +25,20 @@ window.physicsResearchContent = {
     magic" nucleus, meaning they are extremely stable and easier to model theoretically.</p> 
     <figure style="text-align: center;">
       <img src="Images/upc_cartoon.png" alt="UPC cartoon" style="display: block; margin: auto; max-width: 60%; height: auto;">
-      <figcaption>Figure A: An ultraperipheral collision.</figcaption>
+      <figcaption>Figure 1: An ultraperipheral collision.</figcaption>
     </figure>
     <p>Ultraperipheral collisions are a type of heavy-ion collision in which the approaching ions closely pass by each 
-    other instead of directly colliding (Figure A). Technically, this means that the impact parameter between the two ions is greater than
+    other instead of directly colliding (Figure 1). Technically, this means that the impact parameter between the two ions is greater than
     twice the nuclear radius.</p>
     <figure style="text-align: center;">
       <img src="Images/jackson_field_lines.png" alt="jackson_field_lines" style="display: block; margin: auto; max-width: 60%; height: auto;">
-      <figcaption>Figure B: Electric field lines for a stationary (left) and moving (right) charged particle.</figcaption
+      <figcaption>Figure 2: Electric field lines for a stationary (left) and moving (right) charged particle [<i>Jackson, Classical 
+      Electrodynamics</i>].</figcaption
     </figure>
+    <p>At the LHC, the Pb ions in UPCs are traveling very close to the speed of light. This means relativistic effects, such as
+    Lorentz contraction, become important. As the Pb ions travel closer and closer to the speed of light, the nuclei become squished
+    into a kind of pancake shape. The electric field lines of the nuclei undergo a similar effect and become compressed together 
+    (Figure 2). Since electric fields are made up of photons, these conditions produce a linearly polarized source of photons. </p>
   `,
 
   "Compact Muon Solenoid (CMS) Detector": `
