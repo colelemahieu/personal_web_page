@@ -156,10 +156,11 @@ nav a:hover {
   color: #000;
 }
 
-figcaption i {
+figcaption cite {
   font-style: italic;
   font-size: inherit;
   color: inherit;
+  font-family: inherit;
 }
 
 /* About Section */
