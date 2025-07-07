@@ -156,6 +156,12 @@ nav a:hover {
   color: #000;
 }
 
+figcaption i {
+  font-style: italic;
+  font-size: inherit;
+  color: inherit;
+}
+
 /* About Section */
 .about-container {
   display: flex;
