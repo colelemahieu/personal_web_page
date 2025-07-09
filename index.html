@@ -42,6 +42,14 @@
       const target = document.getElementById(id);
       target.classList.add('active');
       loadSection(id);
+
+      // Send virtual pageview to Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          page_path: `/${id}`,
+          page_title: `Cole Le Mahieu - ${capitalize(id)}`
+        });
+      }
     }
 
 function loadSection(id) {
@@ -92,6 +100,14 @@ function loadSection(id) {
       loadSection('home');  
       loadSection('physics_research');
       loadSection('projects'); 
+
+      // Log initial home pageview
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          page_path: '/home',
+          page_title: 'Cole Le Mahieu - Home'
+        });
+      }
     });
   </script>
 
