@@ -1,6 +1,6 @@
 window.physicsResearchContent = {
   "Working at CERN": `
-    <i style="color: #33658A;">ZDC Data Acquisition</i>
+    <h3>ZDC Data Acquisition</h3>
     <p>In the Fall of 2022, I traveled to CERN to help prepare the CMS Zero Degree Calorimeters (ZDCs) for data taking. 
     CMS has two ZDC detectors, each located 140 meters down the beamline from either side of the interaction point. Their 
     purpose is to detect energy deposits from the neutral particles (photons and neutrons) resulting from heavy ion collisions. 
@@ -14,7 +14,7 @@ window.physicsResearchContent = {
       <figcaption>One of the ZDC detectors in the LHC tunnel</figcaption>
     </figure>
 
-    <i style="color: #33658A;">CMS Control Center Shifts</i>
+    <h3>CMS Control Center Shifts</h3>
   `,
 
   "Ultraperipheral Collisions (UPCs)": `
