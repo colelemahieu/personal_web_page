@@ -43,6 +43,10 @@ window.physicsResearchContent = {
     physicists can investigate the inner structure of protons and neutrons.</p>
   `,
 
+  "My Physics Research": `
+    <p>Coming soon</p>
+   `,
+
   "Compact Muon Solenoid (CMS) Detector": `
     <div>
     <img src="Images/cms_detector.png" alt="CMS detector" style="display: block; margin: auto; max-width: 95%; height: auto;">
