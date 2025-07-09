@@ -1,5 +1,6 @@
 window.physicsResearchContent = {
   "Working at CERN": `
+    <br>
     <h3 style="font-weight: normal;">ZDC Data Acquisition</h3>
     <p>In the Fall of 2022, I traveled to CERN to help prepare the CMS Zero Degree Calorimeters (ZDCs) for data taking. 
     CMS has two ZDC detectors, each located 140 meters down the beamline from either side of the interaction point. Their 
@@ -14,6 +15,7 @@ window.physicsResearchContent = {
       <figcaption>One of the ZDC detectors in the LHC tunnel</figcaption>
     </figure>
 
+    <br>
     <h3 style="font-weight: normal;">CMS Control Center Shifts</h3>
   `,
 
