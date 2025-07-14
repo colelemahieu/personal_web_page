@@ -273,3 +273,15 @@ figcaption cite {
 .sticky-footer .gh-link:hover {
   text-decoration: underline;
 }
+
+.tech-icons {
+  list-style: none;
+  display: flex;
+  gap: 20px;          
+  padding: 0;
+  margin: 0;
+}
+
+.tech-icons i {
+  font-size: 40px;    
+}
