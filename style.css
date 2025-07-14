@@ -259,7 +259,17 @@ figcaption cite {
   left: 0;
   width: 100%;
   text-align: center;
-  background: #fff;      
+  background: #33658A;     
   padding: 0.75rem 0;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+}
+
+.sticky-footer .gh-link {
+  color: #fff;              
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sticky-footer .gh-link:hover {
+  text-decoration: underline;
 }
