@@ -285,3 +285,10 @@ figcaption cite {
 .tech-icons i {
   font-size: 40px;    
 }
+
+.tech-icons img,
+.root-logo {
+  width: 40px;
+  height: auto;
+  vertical-align: middle;
+}
