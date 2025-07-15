@@ -303,10 +303,3 @@ figcaption cite {
 .skill-section {
   flex: 1 1 250px;   
 }
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0.5em;
-}
