@@ -294,10 +294,19 @@ figcaption cite {
   margin-bottom: 0.5em;
 }
 
+.skills-pair {
+  display: flex;
+  gap: 40px;         
+  flex-wrap: wrap;    
+}
 
-.tech-svg {
-  width: 40px;
-  height: 40px;
-  fill: #000;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1)); 
+.skill-section {
+  flex: 1 1 250px;   
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.5em;
 }
