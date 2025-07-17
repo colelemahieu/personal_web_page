@@ -296,11 +296,11 @@ figcaption cite {
 
 .skills-pair {
   display: flex;
-  gap: 16px;         
-  flex-wrap: wrap;    
+  justify-content: flex-start;
+  gap: 60px;
+  margin-bottom: 20px;
 }
 
 .skill-section {
-  flex: 0 1 auto;   
-  min-width: 120px;    
+  width: 200px; 
 }
