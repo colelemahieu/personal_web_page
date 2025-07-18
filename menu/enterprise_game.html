@@ -163,8 +163,8 @@
     shipImg.onerror = () => alert("Failed to load ship image.");
     asteroidImg.onerror = () => alert("Failed to load asteroid image.");
 
-    shipImg.src = 'Images/enterprise.png';
-    asteroidImg.src = 'Images/asteroid_cartoon.png';
+    shipImg.src = '/Images/enterprise.png';
+    asteroidImg.src = '/Images/asteroid_cartoon.png';
 
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
