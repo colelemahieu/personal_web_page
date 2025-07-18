@@ -1,45 +1,51 @@
 <meta charset="UTF-8">
-  <title>USS Enterprise Asteroid Dodge</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-    }
-    #gameContainer {
-      display: none;
-      margin: 2rem auto;
-      border: 2px solid white;
-      width: 600px;
-      height: 400px;
-      position: relative;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
-    }
-    #startButton {
-      margin-top: 2rem;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-  </style>
+<title>USS Enterprise Asteroid Dodge</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  #gameContainer {
+    display: none;
+    margin: 2rem auto;
+    border: 2px solid white;
+    width: 600px;
+    height: 400px;
+    position: relative;
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #000 0%, #111 100%);
+  }
+  #startButton, #restartButton {
+    margin-top: 2rem;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  #restartButton {
+    margin-left: 10px;
+    display: none;
+  }
+</style>
 </head>
 <body>
   <h1>USS Enterprise Asteroid Dodge</h1>
   <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
-  <button id="startButton">Start Game</button>
+  <button id="startButton" disabled>Start Game</button>
+  <button id="restartButton">Restart Game</button>
   <div id="gameContainer">
     <canvas id="gameCanvas" width="600" height="400"></canvas>
   </div>
 
   <script>
     const startButton = document.getElementById('startButton');
+    const restartButton = document.getElementById('restartButton');
     const gameContainer = document.getElementById('gameContainer');
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -129,6 +135,9 @@
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
         ctx.fillText(`Final Score: ${score}`, canvas.width/2 - 60, canvas.height/2 + 30);
+
+        // Show Restart button when game ends
+        restartButton.style.display = 'inline-block';
       }
     }
 
@@ -139,10 +148,21 @@
       asteroids = [];
       gameOver = false;
       startButton.style.display = 'none';
+      restartButton.style.display = 'none';  // hide restart button
       gameContainer.style.display = 'block';
       asteroidInterval = setInterval(createAsteroid, 1000);
       loop();
     }
+
+    restartButton.addEventListener('click', () => {
+      restartButton.style.display = 'none';  // hide restart button
+      score = 0;
+      ship.x = canvas.width / 2 - 30;
+      asteroids = [];
+      gameOver = false;
+      loop();
+      asteroidInterval = setInterval(createAsteroid, 1000);
+    });
 
     function tryStartIfImagesReady() {
       if (imagesLoaded === 2) {
@@ -169,7 +189,6 @@
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
 
-    startButton.disabled = true;
     startButton.addEventListener('click', startGame);
   </script>
 </body>
