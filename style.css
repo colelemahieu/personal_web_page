@@ -304,3 +304,10 @@ figcaption cite {
 .skill-section {
   width: 200px; 
 }
+
+@media (min-width: 600px) {
+  .skills-grid.languages {
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
+}
