@@ -1,38 +1,41 @@
-<meta charset="UTF-8">
-<title>USS Enterprise Asteroid Dodge</title>
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: black;
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-  }
-  #gameContainer {
-    display: none;
-    margin: 2rem auto;
-    border: 2px solid white;
-    width: 600px;
-    height: 400px;
-    position: relative;
-  }
-  canvas {
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, #000 0%, #111 100%);
-  }
-  #startButton, #restartButton {
-    margin-top: 2rem;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-  }
-  #restartButton {
-    margin-left: 10px;
-    display: none;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USS Enterprise Asteroid Dodge</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #gameContainer {
+      display: none;
+      margin: 2rem auto;
+      border: 2px solid white;
+      width: 600px;
+      height: 400px;
+      position: relative;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
+    }
+    #startButton, #restartButton {
+      margin-top: 2rem;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    #restartButton {
+      margin-left: 10px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <h1>USS Enterprise Asteroid Dodge</h1>
@@ -66,14 +69,20 @@
     let score = 0;
     let gameOver = false;
     let gameStarted = false;
-    let asteroidInterval;
     let imagesLoaded = 0;
+
+    // Difficulty progression
+    let lastSpawnTime = 0;
+    let spawnInterval = 2000;
+    let asteroidSpeedMultiplier = 1;
+    let difficultyTimer = 0;
+    let lastFrameTime = performance.now();
 
     function createAsteroid() {
       asteroids.push({
         x: Math.random() * (canvas.width - 40),
         y: -60,
-        speed: 3 + Math.random() * 4
+        speed: (1 + Math.random() * 2) * asteroidSpeedMultiplier
       });
     }
 
@@ -118,25 +127,42 @@
       ctx.fillText(`Score: ${score}`, 10, 20);
     }
 
-    function loop() {
+    function loop(currentTime = performance.now()) {
+      const deltaTime = currentTime - lastFrameTime;
+      lastFrameTime = currentTime;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       if (!gameOver) {
+        difficultyTimer += deltaTime;
+
+        // Increase difficulty every 5 seconds
+        if (difficultyTimer >= 5000) {
+          difficultyTimer = 0;
+          if (spawnInterval > 400) spawnInterval -= 200;
+          asteroidSpeedMultiplier += 0.2;
+        }
+
+        // Spawn new asteroid based on dynamic interval
+        if (currentTime - lastSpawnTime > spawnInterval) {
+          createAsteroid();
+          lastSpawnTime = currentTime;
+        }
+
         moveShip();
         updateAsteroids();
         drawShip();
         drawAsteroids();
         drawScore();
+
         requestAnimationFrame(loop);
       } else {
-        clearInterval(asteroidInterval);
         ctx.fillStyle = 'red';
         ctx.font = '32px sans-serif';
-        ctx.fillText('Game Over', canvas.width/2 - 90, canvas.height/2);
+        ctx.fillText('Game Over', canvas.width / 2 - 90, canvas.height / 2);
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
-        ctx.fillText(`Final Score: ${score}`, canvas.width/2 - 60, canvas.height/2 + 30);
-
-        // Show Restart button when game ends
+        ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 60, canvas.height / 2 + 30);
         restartButton.style.display = 'inline-block';
       }
     }
@@ -147,21 +173,29 @@
       ship.x = canvas.width / 2 - 30;
       asteroids = [];
       gameOver = false;
+      spawnInterval = 2000;
+      asteroidSpeedMultiplier = 1;
+      lastSpawnTime = performance.now();
+      difficultyTimer = 0;
+      lastFrameTime = performance.now();
       startButton.style.display = 'none';
-      restartButton.style.display = 'none';  // hide restart button
+      restartButton.style.display = 'none';
       gameContainer.style.display = 'block';
-      asteroidInterval = setInterval(createAsteroid, 1000);
       loop();
     }
 
     restartButton.addEventListener('click', () => {
-      restartButton.style.display = 'none';  // hide restart button
+      restartButton.style.display = 'none';
       score = 0;
       ship.x = canvas.width / 2 - 30;
       asteroids = [];
       gameOver = false;
+      spawnInterval = 2000;
+      asteroidSpeedMultiplier = 1;
+      lastSpawnTime = performance.now();
+      difficultyTimer = 0;
+      lastFrameTime = performance.now();
       loop();
-      asteroidInterval = setInterval(createAsteroid, 1000);
     });
 
     function tryStartIfImagesReady() {
@@ -188,7 +222,7 @@
 
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
-
     startButton.addEventListener('click', startGame);
   </script>
 </body>
+</html>
