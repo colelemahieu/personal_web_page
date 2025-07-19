@@ -12,13 +12,26 @@
       font-family: sans-serif;
       text-align: center;
     }
+    #gameArea {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
     #gameContainer {
       display: none;
-      margin: 2rem auto;
       border: 2px solid white;
       width: 600px;
       height: 400px;
       position: relative;
+    }
+    #highScoresBox {
+      border: 2px solid white;
+      padding: 1rem;
+      width: 200px;
+      background: #111;
+      text-align: left;
     }
     canvas {
       width: 100%;
@@ -35,6 +48,14 @@
       margin-left: 10px;
       display: none;
     }
+    #highScoresBox h2 {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    #highScoresList {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -42,8 +63,16 @@
   <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
   <button id="startButton" disabled>Start Game</button>
   <button id="restartButton">Restart Game</button>
-  <div id="gameContainer">
-    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+  <div id="gameArea">
+    <div id="gameContainer">
+      <canvas id="gameCanvas" width="600" height="400"></canvas>
+    </div>
+
+    <div id="highScoresBox">
+      <h2>Top 5 High Scores</h2>
+      <ol id="highScoresList"></ol>
+    </div>
   </div>
 
   <script>
@@ -52,6 +81,7 @@
     const gameContainer = document.getElementById('gameContainer');
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
+    const highScoresList = document.getElementById('highScoresList');
 
     const shipImg = new Image();
     const asteroidImg = new Image();
@@ -71,7 +101,6 @@
     let gameStarted = false;
     let imagesLoaded = 0;
 
-    // Difficulty progression
     let lastSpawnTime = 0;
     let spawnInterval = 2000;
     let asteroidSpeedMultiplier = 1;
@@ -136,14 +165,12 @@
       if (!gameOver) {
         difficultyTimer += deltaTime;
 
-        // Increase difficulty every 5 seconds
         if (difficultyTimer >= 5000) {
           difficultyTimer = 0;
           if (spawnInterval > 400) spawnInterval -= 200;
           asteroidSpeedMultiplier += 0.2;
         }
 
-        // Spawn new asteroid based on dynamic interval
         if (currentTime - lastSpawnTime > spawnInterval) {
           createAsteroid();
           lastSpawnTime = currentTime;
@@ -164,6 +191,8 @@
         ctx.font = '20px sans-serif';
         ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 60, canvas.height / 2 + 30);
         restartButton.style.display = 'inline-block';
+
+        handleHighScore(score);
       }
     }
 
@@ -204,6 +233,34 @@
       }
     }
 
+    function handleHighScore(newScore) {
+      let scores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+      // Check if score is high enough
+      if (scores.length < 5 || newScore > scores[scores.length - 1].score) {
+        let initials = prompt("New High Score! Enter your initials (3 letters):", "AAA");
+        if (initials) {
+          initials = initials.toUpperCase().substring(0, 3);
+          scores.push({ initials, score: newScore });
+          scores.sort((a, b) => b.score - a.score);
+          scores = scores.slice(0, 5);
+          localStorage.setItem('highScores', JSON.stringify(scores));
+        }
+      }
+
+      updateHighScoreList();
+    }
+
+    function updateHighScoreList() {
+      const scores = JSON.parse(localStorage.getItem('highScores')) || [];
+      highScoresList.innerHTML = '';
+      scores.forEach(({ initials, score }) => {
+        const li = document.createElement('li');
+        li.textContent = `${initials}: ${score}`;
+        highScoresList.appendChild(li);
+      });
+    }
+
     shipImg.onload = () => {
       imagesLoaded++;
       tryStartIfImagesReady();
@@ -223,6 +280,9 @@
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
     startButton.addEventListener('click', startGame);
+
+    // Initialize scores on page load
+    updateHighScoreList();
   </script>
 </body>
 </html>
