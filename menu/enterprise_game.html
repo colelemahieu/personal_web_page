@@ -11,110 +11,101 @@
       color: white;
       font-family: sans-serif;
       text-align: center;
+      overflow: hidden; /* prevent scrollbars */
     }
 
     #gameContainer {
       display: none;
       margin: 2rem auto;
       border: 2px solid white;
-      width: 100%;
-      max-width: 1000px;
-      aspect-ratio: 3 / 2;
-      position: relative;
+      background-color: #111;
+      padding: 1rem;
+      width: 80%;
+      max-width: 600px;
+      aspect-ratio: 3/2;
     }
 
     canvas {
       width: 100%;
       height: 100%;
       display: block;
-      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
-    }
-
-    #startButton, #restartButton {
-      margin-top: 2rem;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    #restartButton {
-      margin-left: 10px;
-      display: none;
     }
 
     #highScoresBox {
-      margin: 1rem auto;
-      padding: 10px;
-      width: 300px;
-      background: #111;
+      margin-top: 2rem;
       border: 1px solid white;
-      text-align: left;
-      display: none;
+      padding: 1rem;
+      background-color: #222;
+      width: 80%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    #initialPrompt {
-      display: none;
+    button {
+      padding: 0.5rem 1rem;
       margin-top: 1rem;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Fullscreen styles */
+    :fullscreen #gameContainer,
+    :-webkit-full-screen #gameContainer {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      aspect-ratio: unset;
+    }
+
+    :fullscreen canvas,
+    :-webkit-full-screen canvas {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
   <h1>USS Enterprise Asteroid Dodge</h1>
-  <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
-
-  <div id="highScoresBox">
-    <h3>Top 5 High Scores</h3>
-    <ul id="highScoresList"></ul>
+  <div id="initialPrompt">
+    <p>Dodge the asteroids with the arrow keys!</p>
+    <button onclick="startGame()">Start Game</button>
   </div>
-
-  <button id="startButton" disabled>Start Game</button>
-  <button id="restartButton">Restart Game</button>
 
   <div id="gameContainer">
     <canvas id="gameCanvas" width="600" height="400"></canvas>
   </div>
 
-  <div id="initialPrompt">
-    <p>New High Score! Enter your initials (3 letters):</p>
-    <input type="text" id="initialsInput" maxlength="3" />
-    <button id="submitInitials">Submit</button>
+  <div id="highScoresBox">
+    <h2>High Scores</h2>
+    <ol id="highScoresList"></ol>
   </div>
 
   <script>
-    const startButton = document.getElementById('startButton');
-    const restartButton = document.getElementById('restartButton');
-    const gameContainer = document.getElementById('gameContainer');
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-
-    const shipImg = new Image();
-    const asteroidImg = new Image();
-
+    const gameContainer = document.getElementById('gameContainer');
     const highScoresBox = document.getElementById('highScoresBox');
-    const highScoresList = document.getElementById('highScoresList');
     const initialPrompt = document.getElementById('initialPrompt');
-    const initialsInput = document.getElementById('initialsInput');
-    const submitInitials = document.getElementById('submitInitials');
+    const highScoresList = document.getElementById('highScoresList');
 
-    let ship = {
-      x: canvas.width / 2 - 30,
-      y: canvas.height - 80,
-      width: 60,
-      height: 60,
-      speed: 10
-    };
+    const enterpriseImg = new Image();
+    enterpriseImg.src = '/Images/enterprise.png';
 
-    let keys = {};
+    const asteroidImg = new Image();
+    asteroidImg.src = '/Images/asteroid_cartoon.png';
+
+    let ship = { x: 280, y: 360, width: 40, height: 40, speed: 5 };
     let asteroids = [];
     let score = 0;
-    let gameOver = false;
-    let asteroidInterval;
-    let imagesLoaded = 0;
-    let asteroidSpeed = 2;
-    let asteroidRate = 2000;
-    let difficultyTimer;
+    let keys = {};
+    let gameInterval;
 
-    // Fullscreen helpers
+    document.addEventListener('keydown', (e) => keys[e.key] = true);
+    document.addEventListener('keyup', (e) => keys[e.key] = false);
+
     function goFullscreen(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -125,180 +116,102 @@
       }
     }
 
-    function exitFullscreen() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
+    function startGame() {
+      goFullscreen(gameContainer);
+
+      gameContainer.style.display = 'block';
+      highScoresBox.style.display = 'none';
+      initialPrompt.style.display = 'none';
+      ship.x = 280;
+      ship.y = 360;
+      asteroids = [];
+      score = 0;
+
+      gameInterval = setInterval(gameLoop, 1000 / 60);
     }
 
-    function createAsteroid() {
-      asteroids.push({
-        x: Math.random() * (canvas.width - 40),
-        y: -60,
-        speed: asteroidSpeed
-      });
+    function gameLoop() {
+      update();
+      draw();
     }
 
-    function increaseDifficulty() {
-      if (asteroidSpeed < 10) asteroidSpeed += 0.3;
-      if (asteroidRate > 400) {
-        clearInterval(asteroidInterval);
-        asteroidRate -= 150;
-        asteroidInterval = setInterval(createAsteroid, asteroidRate);
-      }
-    }
-
-    function drawShip() {
-      ctx.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
-    }
-
-    function drawAsteroids() {
-      for (let a of asteroids) {
-        ctx.drawImage(asteroidImg, a.x, a.y, 40, 40);
-      }
-    }
-
-    function updateAsteroids() {
-      for (let a of asteroids) {
-        a.y += a.speed;
-        if (a.y > canvas.height) {
-          a.y = -40;
-          a.x = Math.random() * (canvas.width - 40);
-          score++;
-        }
-
-        if (
-          a.x < ship.x + ship.width &&
-          a.x + 40 > ship.x &&
-          a.y < ship.y + ship.height &&
-          a.y + 40 > ship.y
-        ) {
-          gameOver = true;
-        }
-      }
-    }
-
-    function moveShip() {
+    function update() {
       if (keys['ArrowLeft'] && ship.x > 0) ship.x -= ship.speed;
       if (keys['ArrowRight'] && ship.x + ship.width < canvas.width) ship.x += ship.speed;
+      if (keys['ArrowUp'] && ship.y > 0) ship.y -= ship.speed;
+      if (keys['ArrowDown'] && ship.y + ship.height < canvas.height) ship.y += ship.speed;
+
+      if (Math.random() < 0.02) {
+        asteroids.push({
+          x: Math.random() * (canvas.width - 40),
+          y: -40,
+          width: 40,
+          height: 40,
+          speed: 2 + Math.random() * 3
+        });
+      }
+
+      for (let a of asteroids) {
+        a.y += a.speed;
+      }
+
+      asteroids = asteroids.filter(a => a.y < canvas.height);
+
+      for (let a of asteroids) {
+        if (isColliding(ship, a)) {
+          clearInterval(gameInterval);
+          checkHighScore();
+          return;
+        }
+      }
+
+      score++;
     }
 
-    function drawScore() {
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(enterpriseImg, ship.x, ship.y, ship.width, ship.height);
+
+      for (let a of asteroids) {
+        ctx.drawImage(asteroidImg, a.x, a.y, a.width, a.height);
+      }
+
       ctx.fillStyle = 'white';
       ctx.font = '16px sans-serif';
       ctx.fillText(`Score: ${score}`, 10, 20);
     }
 
-    function loop() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (!gameOver) {
-        moveShip();
-        updateAsteroids();
-        drawShip();
-        drawAsteroids();
-        drawScore();
-        requestAnimationFrame(loop);
-      } else {
-        clearInterval(asteroidInterval);
-        clearInterval(difficultyTimer);
-        ctx.fillStyle = 'red';
-        ctx.font = '32px sans-serif';
-        ctx.fillText('Game Over', canvas.width/2 - 90, canvas.height/2);
-        ctx.fillStyle = 'white';
-        ctx.font = '20px sans-serif';
-        ctx.fillText(`Final Score: ${score}`, canvas.width/2 - 60, canvas.height/2 + 30);
-
-        setTimeout(() => {
-          checkHighScore(score);
-        }, 500);
-      }
+    function isColliding(r1, r2) {
+      return r1.x < r2.x + r2.width &&
+             r1.x + r1.width > r2.x &&
+             r1.y < r2.y + r2.height &&
+             r1.y + r1.height > r2.y;
     }
 
-    function startGame() {
-      goFullscreen(document.documentElement); // Go fullscreen when game starts
-
-      gameContainer.style.display = 'block';
-      highScoresBox.style.display = 'none';
-      initialPrompt.style.display = 'none';
-
-      asteroidSpeed = 2;
-      asteroidRate = 2000;
-      ship.x = canvas.width / 2 - 30;
-      score = 0;
-      gameOver = false;
-      asteroids = [];
-      startButton.style.display = 'none';
-      restartButton.style.display = 'none';
-      asteroidInterval = setInterval(createAsteroid, asteroidRate);
-      difficultyTimer = setInterval(increaseDifficulty, 3000);
-      loop();
+    function checkHighScore() {
+      let highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
+      highScores.push(score);
+      highScores.sort((a, b) => b - a);
+      highScores = highScores.slice(0, 5);
+      localStorage.setItem('highScores', JSON.stringify(highScores));
+      displayHighScores();
     }
 
-    restartButton.addEventListener('click', () => {
-      restartButton.style.display = 'none';
-      startGame();
-    });
-
-    function checkHighScore(score) {
-      const scores = JSON.parse(localStorage.getItem('highScores')) || [];
-      const lowest = scores.length < 5 ? 0 : scores[4].score;
-
-      if (score > lowest) {
-        initialPrompt.style.display = 'block';
-        initialsInput.focus();
-        submitInitials.onclick = () => {
-          const initials = initialsInput.value.toUpperCase().substring(0, 3);
-          if (initials.length === 0) return;
-
-          scores.push({ initials, score });
-          scores.sort((a, b) => b.score - a.score);
-          const newTop = scores.slice(0, 5);
-          localStorage.setItem('highScores', JSON.stringify(newTop));
-          showHighScores();
-          initialPrompt.style.display = 'none';
-          initialsInput.value = '';
-          restartButton.style.display = 'inline-block';
-        };
-      } else {
-        showHighScores();
-        restartButton.style.display = 'inline-block';
-      }
-    }
-
-    function showHighScores() {
-      const scores = JSON.parse(localStorage.getItem('highScores')) || [];
+    function displayHighScores() {
       highScoresList.innerHTML = '';
-      scores.forEach(s => {
+      const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
+      highScores.forEach(score => {
         const li = document.createElement('li');
-        li.textContent = `${s.initials} - ${s.score}`;
+        li.textContent = score;
         highScoresList.appendChild(li);
       });
+      gameContainer.style.display = 'none';
       highScoresBox.style.display = 'block';
+      initialPrompt.style.display = 'block';
     }
 
-    function tryStartIfImagesReady() {
-      if (imagesLoaded === 2) {
-        startButton.disabled = false;
-        showHighScores();
-      }
-    }
-
-    shipImg.onload = () => { imagesLoaded++; tryStartIfImagesReady(); };
-    asteroidImg.onload = () => { imagesLoaded++; tryStartIfImagesReady(); };
-
-    shipImg.onerror = () => alert("Failed to load ship image.");
-    asteroidImg.onerror = () => alert("Failed to load asteroid image.");
-
-    shipImg.src = '/Images/enterprise.png';
-    asteroidImg.src = '/Images/asteroid_cartoon.png';
-
-    window.addEventListener('keydown', (e) => keys[e.key] = true);
-    window.addEventListener('keyup', (e) => keys[e.key] = false);
-    startButton.addEventListener('click', startGame);
+    // Show high scores on initial load
+    displayHighScores();
   </script>
 </body>
 </html>
