@@ -114,6 +114,27 @@
     let asteroidRate = 2000;
     let difficultyTimer;
 
+    // Fullscreen helpers
+    function goFullscreen(element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    }
+
+    function exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
     function createAsteroid() {
       asteroids.push({
         x: Math.random() * (canvas.width - 40),
@@ -198,6 +219,8 @@
     }
 
     function startGame() {
+      goFullscreen(document.documentElement); // Go fullscreen when game starts
+
       gameContainer.style.display = 'block';
       highScoresBox.style.display = 'none';
       initialPrompt.style.display = 'none';
