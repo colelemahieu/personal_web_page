@@ -140,7 +140,7 @@
 
     function createAsteroid() {
       asteroids.push({
-        x: Math.random() * (canvas.width - 40),
+        x: Math.random() * (canvas.width - 30),
         y: -60,
         speed: asteroidSpeed
       });
@@ -161,7 +161,7 @@
 
     function drawAsteroids() {
       for (let a of asteroids) {
-        ctx.drawImage(asteroidImg, a.x, a.y, 40, 40);
+        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30);
       }
     }
 
@@ -169,16 +169,16 @@
       for (let a of asteroids) {
         a.y += a.speed;
         if (a.y > canvas.height) {
-          a.y = -40;
-          a.x = Math.random() * (canvas.width - 40);
+          a.y = -30;
+          a.x = Math.random() * (canvas.width - 30);
           score++;
         }
 
         if (
           a.x < ship.x + ship.width &&
-          a.x + 40 > ship.x &&
+          a.x + 30 > ship.x &&
           a.y < ship.y + ship.height &&
-          a.y + 40 > ship.y
+          a.y + 30 > ship.y
         ) {
           gameOver = true;
         }
