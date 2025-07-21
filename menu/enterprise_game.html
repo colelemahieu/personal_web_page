@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -199,7 +199,7 @@
     function drawScore() {
       ctx.fillStyle = 'white';
       ctx.font = '16px sans-serif';
-      ctx.fillText(Score: ${score}, 10, 20);
+      ctx.fillText(`Score: ${score}`, 10, 20);
     }
 
     // Helper to draw rounded rectangle (for restart button)
@@ -245,7 +245,7 @@
 
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
-        ctx.fillText(Final Score: ${score}, canvas.width / 2 - 60, canvas.height / 2 + 30);
+        ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 60, canvas.height / 2 + 30);
 
         // Draw styled Restart button with hover effect
         const buttonX = canvas.width / 2 - 70;
@@ -319,7 +319,7 @@
       highScoresList.innerHTML = '';
       scores.forEach(s => {
         const li = document.createElement('li');
-        li.textContent = ${s.initials} - ${s.score};
+        li.textContent = `${s.initials} - ${s.score}`;
         highScoresList.appendChild(li);
       });
       highScoresBox.style.display = 'block';
@@ -387,4 +387,4 @@
     });
   </script>
 </body>
-</html>   
+</html>
