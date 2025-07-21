@@ -272,9 +272,12 @@
     function startGame() {
       goFullscreen(gameContainer);
 
-      // 🔧 FIX: Synchronize canvas resolution with its displayed size
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      const newWidth = canvas.clientWidth || 600;
+      const newHeight = canvas.clientHeight || 400;
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      logToPage(`Canvas size: ${canvas.width} x ${canvas.height}`);
+
 
       gameContainer.style.display = 'block';
       highScoresBox.style.display = 'none';
