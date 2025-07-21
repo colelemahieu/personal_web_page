@@ -42,6 +42,26 @@
       display: none;
     }
 
+    #exitFullscreenBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 10;
+  display: none; /* Hidden by default, show only in fullscreen */
+}
+
+
   button {
   font-family: 'Press Start 2P', monospace;
   font-size: 12px;
@@ -107,6 +127,7 @@ button:hover {
   <button id="restartButton">Restart Game</button>
 
   <div id="gameContainer">
+    <button id="exitFullscreenBtn" title="Exit Fullscreen">✕</button>
     <canvas id="gameCanvas" width="600" height="400"></canvas>
   </div>
 
