@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -128,6 +128,7 @@
     let asteroidRate = 2000;
     let difficultyTimer;
 
+    // Mouse tracking for hover effect
     let mouseX = 0;
     let mouseY = 0;
     let isHoveringRestart = false;
@@ -144,8 +145,8 @@
 
     function createAsteroid() {
       asteroids.push({
-        x: Math.random() * (canvas.width - 30),
-        y: -30,
+        x: Math.random() * (canvas.width - 30), // updated size 30
+        y: -30, // updated size 30
         speed: asteroidSpeed
       });
     }
@@ -165,7 +166,7 @@
 
     function drawAsteroids() {
       for (let a of asteroids) {
-        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30);
+        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30); // smaller size
       }
     }
 
@@ -173,11 +174,12 @@
       for (let a of asteroids) {
         a.y += a.speed;
         if (a.y > canvas.height) {
-          a.y = -30;
-          a.x = Math.random() * (canvas.width - 30);
+          a.y = -30; // updated size 30
+          a.x = Math.random() * (canvas.width - 30); // updated size 30
           score++;
         }
 
+        // collision detection with updated size
         if (
           a.x < ship.x + ship.width &&
           a.x + 30 > ship.x &&
@@ -197,9 +199,10 @@
     function drawScore() {
       ctx.fillStyle = 'white';
       ctx.font = '16px sans-serif';
-      ctx.fillText(`Score: ${score}`, 10, 20);
+      ctx.fillText(Score: ${score}, 10, 20);
     }
 
+    // Helper to draw rounded rectangle (for restart button)
     function roundRect(ctx, x, y, width, height, radius, fillStyle, strokeStyle) {
       ctx.beginPath();
       ctx.moveTo(x + radius, y);
@@ -236,18 +239,15 @@
         clearInterval(asteroidInterval);
         clearInterval(difficultyTimer);
 
-        // Center text
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-
         ctx.fillStyle = 'red';
         ctx.font = '32px sans-serif';
-        ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2 - 30);
+        ctx.fillText('Game Over', canvas.width / 2 - 90, canvas.height / 2);
 
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
-        ctx.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2);
+        ctx.fillText(Final Score: ${score}, canvas.width / 2 - 60, canvas.height / 2 + 30);
 
+        // Draw styled Restart button with hover effect
         const buttonX = canvas.width / 2 - 70;
         const buttonY = canvas.height / 2 + 50;
         const buttonW = 140;
@@ -261,7 +261,9 @@
 
         ctx.fillStyle = 'white';
         ctx.font = 'bold 20px Arial, sans-serif';
-        ctx.fillText('Restart Game', canvas.width / 2, buttonY + buttonH / 2);
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+        ctx.fillText('Restart Game', buttonX + buttonW / 2, buttonY + buttonH / 2);
 
         setTimeout(() => {
           checkHighScore(score);
@@ -271,13 +273,6 @@
 
     function startGame() {
       goFullscreen(gameContainer);
-
-      const newWidth = canvas.clientWidth || 600;
-      const newHeight = canvas.clientHeight || 400;
-      canvas.width = newWidth;
-      canvas.height = newHeight;
-      logToPage(`Canvas size: ${canvas.width} x ${canvas.height}`);
-
 
       gameContainer.style.display = 'block';
       highScoresBox.style.display = 'none';
@@ -324,7 +319,7 @@
       highScoresList.innerHTML = '';
       scores.forEach(s => {
         const li = document.createElement('li');
-        li.textContent = `${s.initials} - ${s.score}`;
+        li.textContent = ${s.initials} - ${s.score};
         highScoresList.appendChild(li);
       });
       highScoresBox.style.display = 'block';
@@ -392,4 +387,4 @@
     });
   </script>
 </body>
-</html>
+</html>   
