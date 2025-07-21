@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>USS Enterprise Asteroid Dodge</title>
   <style>
     body {
@@ -128,6 +128,11 @@
     let asteroidRate = 2000;
     let difficultyTimer;
 
+    // Mouse tracking for hover effect
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHoveringRestart = false;
+
     function goFullscreen(element) {
       if (element.requestFullscreen) {
         element.requestFullscreen();
@@ -140,8 +145,8 @@
 
     function createAsteroid() {
       asteroids.push({
-        x: Math.random() * (canvas.width - 30),
-        y: -60,
+        x: Math.random() * (canvas.width - 30), // updated size 30
+        y: -30, // updated size 30
         speed: asteroidSpeed
       });
     }
@@ -161,7 +166,7 @@
 
     function drawAsteroids() {
       for (let a of asteroids) {
-        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30);
+        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30); // smaller size
       }
     }
 
@@ -169,11 +174,12 @@
       for (let a of asteroids) {
         a.y += a.speed;
         if (a.y > canvas.height) {
-          a.y = -30;
-          a.x = Math.random() * (canvas.width - 30);
+          a.y = -30; // updated size 30
+          a.x = Math.random() * (canvas.width - 30); // updated size 30
           score++;
         }
 
+        // collision detection with updated size
         if (
           a.x < ship.x + ship.width &&
           a.x + 30 > ship.x &&
@@ -196,6 +202,30 @@
       ctx.fillText(`Score: ${score}`, 10, 20);
     }
 
+    // Helper to draw rounded rectangle (for restart button)
+    function roundRect(ctx, x, y, width, height, radius, fillStyle, strokeStyle) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+
+      if (fillStyle) {
+        ctx.fillStyle = fillStyle;
+        ctx.fill();
+      }
+      if (strokeStyle) {
+        ctx.strokeStyle = strokeStyle;
+        ctx.stroke();
+      }
+    }
+
     function loop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (!gameOver) {
@@ -211,20 +241,29 @@
 
         ctx.fillStyle = 'red';
         ctx.font = '32px sans-serif';
-        ctx.fillText('Game Over', canvas.width/2 - 90, canvas.height/2);
+        ctx.fillText('Game Over', canvas.width / 2 - 90, canvas.height / 2);
 
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
-        ctx.fillText(`Final Score: ${score}`, canvas.width/2 - 60, canvas.height/2 + 30);
+        ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 60, canvas.height / 2 + 30);
 
-        // Draw Restart button inside canvas
-        ctx.fillStyle = '#222';
-        ctx.fillRect(canvas.width/2 - 70, canvas.height/2 + 50, 140, 40);
-        ctx.strokeStyle = 'white';
-        ctx.strokeRect(canvas.width/2 - 70, canvas.height/2 + 50, 140, 40);
+        // Draw styled Restart button with hover effect
+        const buttonX = canvas.width / 2 - 70;
+        const buttonY = canvas.height / 2 + 50;
+        const buttonW = 140;
+        const buttonH = 40;
+        const radius = 10;
+
+        const fillColor = isHoveringRestart ? '#555' : '#222';
+        const strokeColor = 'white';
+
+        roundRect(ctx, buttonX, buttonY, buttonW, buttonH, radius, fillColor, strokeColor);
+
         ctx.fillStyle = 'white';
-        ctx.font = '18px sans-serif';
-        ctx.fillText('Restart Game', canvas.width/2 - 55, canvas.height/2 + 75);
+        ctx.font = 'bold 20px Arial, sans-serif';
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+        ctx.fillText('Restart Game', buttonX + buttonW / 2, buttonY + buttonH / 2);
 
         setTimeout(() => {
           checkHighScore(score);
@@ -306,28 +345,46 @@
     window.addEventListener('keyup', (e) => keys[e.key] = false);
     startButton.addEventListener('click', startGame);
 
-  canvas.addEventListener('click', function(e) {
-    if (!gameOver) return;
+    canvas.addEventListener('click', function (e) {
+      if (!gameOver) return;
 
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
-  const mouseX = (e.clientX - rect.left) * scaleX;
-  const mouseY = (e.clientY - rect.top) * scaleY;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const mouseX = (e.clientX - rect.left) * scaleX;
+      const mouseY = (e.clientY - rect.top) * scaleY;
 
-  const buttonX = canvas.width / 2 - 70;
-  const buttonY = canvas.height / 2 + 50;
-  const buttonW = 140;
-  const buttonH = 40;
+      const buttonX = canvas.width / 2 - 70;
+      const buttonY = canvas.height / 2 + 50;
+      const buttonW = 140;
+      const buttonH = 40;
 
-  if (
-    mouseX >= buttonX && mouseX <= buttonX + buttonW &&
-    mouseY >= buttonY && mouseY <= buttonY + buttonH
-  ) {
-    startGame();
-  }
-});
+      if (
+        mouseX >= buttonX && mouseX <= buttonX + buttonW &&
+        mouseY >= buttonY && mouseY <= buttonY + buttonH
+      ) {
+        startGame();
+      }
+    });
 
+    canvas.addEventListener('mousemove', function (e) {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      mouseX = (e.clientX - rect.left) * scaleX;
+      mouseY = (e.clientY - rect.top) * scaleY;
+
+      const buttonX = canvas.width / 2 - 70;
+      const buttonY = canvas.height / 2 + 50;
+      const buttonW = 140;
+      const buttonH = 40;
+
+      isHoveringRestart =
+        mouseX >= buttonX && mouseX <= buttonX + buttonW &&
+        mouseY >= buttonY && mouseY <= buttonY + buttonH;
+
+      canvas.style.cursor = isHoveringRestart ? 'pointer' : 'default';
+    });
   </script>
 </body>
 </html>
