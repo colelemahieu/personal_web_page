@@ -62,6 +62,19 @@
   display: none; /* Hidden by default, show only in fullscreen */
 }
 
+    #menuContainer {
+  width: 50%;
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #111;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 20px #0f0;
+  border-radius: 20px;
+  text-align: center;
+}
+
+
 
   button {
   font-family: 'Press Start 2P', monospace;
@@ -116,15 +129,19 @@ button:hover {
   </style>
 </head>
 <body>
-  <h1>USS Enterprise Asteroid Dodge</h1>
-  <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
 
-  <div id="highScoresBox">
-    <h3>Top 5 High Scores</h3>
-    <ul id="highScoresList"></ul>
+  <div id="menuContainer">
+    <h1>USS Enterprise Asteroid Dodge</h1>
+    <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
+
+    <div id="highScoresBox">
+      <h3>Top 5 High Scores</h3>
+      <ul id="highScoresList"></ul>
+    </div>
+  
+    <button id="startButton" disabled>Start Game</button>
   </div>
-
-  <button id="startButton" disabled>Start Game</button>
+    
   <button id="restartButton">Restart Game</button>
 
   <div id="gameContainer">
