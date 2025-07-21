@@ -30,7 +30,7 @@
       display: block;
     }
 
-    #startButton, #restartButton {
+    #startButton {
       margin-top: 2rem;
       padding: 10px 20px;
       font-size: 1.2rem;
@@ -38,7 +38,6 @@
     }
 
     #restartButton {
-      margin-left: 10px;
       display: none;
     }
 
@@ -57,7 +56,6 @@
       margin-top: 1rem;
     }
 
-    /* Fullscreen adjustments */
     :fullscreen #gameCanvas,
     :-webkit-full-screen #gameCanvas {
       width: 100%;
@@ -210,12 +208,23 @@
       } else {
         clearInterval(asteroidInterval);
         clearInterval(difficultyTimer);
+
         ctx.fillStyle = 'red';
         ctx.font = '32px sans-serif';
         ctx.fillText('Game Over', canvas.width/2 - 90, canvas.height/2);
+
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
         ctx.fillText(`Final Score: ${score}`, canvas.width/2 - 60, canvas.height/2 + 30);
+
+        // Draw Restart button inside canvas
+        ctx.fillStyle = '#222';
+        ctx.fillRect(canvas.width/2 - 70, canvas.height/2 + 50, 140, 40);
+        ctx.strokeStyle = 'white';
+        ctx.strokeRect(canvas.width/2 - 70, canvas.height/2 + 50, 140, 40);
+        ctx.fillStyle = 'white';
+        ctx.font = '18px sans-serif';
+        ctx.fillText('Restart Game', canvas.width/2 - 55, canvas.height/2 + 75);
 
         setTimeout(() => {
           checkHighScore(score);
@@ -224,7 +233,7 @@
     }
 
     function startGame() {
-      goFullscreen(gameContainer); // only fullscreen the game box
+      goFullscreen(gameContainer);
 
       gameContainer.style.display = 'block';
       highScoresBox.style.display = 'none';
@@ -237,16 +246,10 @@
       gameOver = false;
       asteroids = [];
       startButton.style.display = 'none';
-      restartButton.style.display = 'none';
       asteroidInterval = setInterval(createAsteroid, asteroidRate);
       difficultyTimer = setInterval(increaseDifficulty, 3000);
       loop();
     }
-
-    restartButton.addEventListener('click', () => {
-      restartButton.style.display = 'none';
-      startGame();
-    });
 
     function checkHighScore(score) {
       const scores = JSON.parse(localStorage.getItem('highScores')) || [];
@@ -266,11 +269,9 @@
           showHighScores();
           initialPrompt.style.display = 'none';
           initialsInput.value = '';
-          restartButton.style.display = 'inline-block';
         };
       } else {
         showHighScores();
-        restartButton.style.display = 'inline-block';
       }
     }
 
@@ -304,6 +305,26 @@
     window.addEventListener('keydown', (e) => keys[e.key] = true);
     window.addEventListener('keyup', (e) => keys[e.key] = false);
     startButton.addEventListener('click', startGame);
+
+    canvas.addEventListener('click', function(e) {
+      if (!gameOver) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const buttonX = canvas.width / 2 - 70;
+      const buttonY = canvas.height / 2 + 50;
+      const buttonW = 140;
+      const buttonH = 40;
+
+      if (
+        mouseX >= buttonX && mouseX <= buttonX + buttonW &&
+        mouseY >= buttonY && mouseY <= buttonY + buttonH
+      ) {
+        startGame();
+      }
+    });
   </script>
 </body>
 </html>
