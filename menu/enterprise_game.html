@@ -306,25 +306,28 @@
     window.addEventListener('keyup', (e) => keys[e.key] = false);
     startButton.addEventListener('click', startGame);
 
-    canvas.addEventListener('click', function(e) {
-      if (!gameOver) return;
+  canvas.addEventListener('click', function(e) {
+    if (!gameOver) return;
 
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const mouseX = (e.clientX - rect.left) * scaleX;
+  const mouseY = (e.clientY - rect.top) * scaleY;
 
-      const buttonX = canvas.width / 2 - 70;
-      const buttonY = canvas.height / 2 + 50;
-      const buttonW = 140;
-      const buttonH = 40;
+  const buttonX = canvas.width / 2 - 70;
+  const buttonY = canvas.height / 2 + 50;
+  const buttonW = 140;
+  const buttonH = 40;
 
-      if (
-        mouseX >= buttonX && mouseX <= buttonX + buttonW &&
-        mouseY >= buttonY && mouseY <= buttonY + buttonH
-      ) {
-        startGame();
-      }
-    });
+  if (
+    mouseX >= buttonX && mouseX <= buttonX + buttonW &&
+    mouseY >= buttonY && mouseY <= buttonY + buttonH
+  ) {
+    startGame();
+  }
+});
+
   </script>
 </body>
 </html>
