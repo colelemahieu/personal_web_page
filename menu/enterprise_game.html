@@ -66,7 +66,10 @@
   max-width: 600px;
   margin: 4rem auto;
   padding: 2rem;
-  background-color: #111;
+  background-image: url('/Images/game_cover.png'); 
+  background-size: cover;       
+  background-position: center; 
+  background-repeat: no-repeat;
   border-radius: 20px;
   text-align: center;
 }
@@ -224,7 +227,7 @@ button:hover {
 
     function drawAsteroids() {
       for (let a of asteroids) {
-        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30); // smaller size
+        ctx.drawImage(asteroidImg, a.x, a.y, 30, 30); 
       }
     }
 
@@ -233,7 +236,7 @@ button:hover {
         a.y += a.speed;
         if (a.y > canvas.height) {
           a.y = -30; // updated size 30
-          a.x = Math.random() * (canvas.width - 30); // updated size 30
+          a.x = Math.random() * (canvas.width - 30); 
           score++;
         }
 
