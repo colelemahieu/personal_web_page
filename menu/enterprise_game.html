@@ -96,17 +96,6 @@ button:hover {
   box-shadow: 0 0 20px #0f0;
 }
 
-
-    #highScoresBox {
-      margin: 1rem auto;
-      padding: 10px;
-      width: 300px;
-      background: #111;
-      border: 1px solid white;
-      text-align: left;
-      display: none;
-    }
-
     #initialPrompt {
       display: none;
       margin-top: 1rem;
@@ -130,6 +119,7 @@ button:hover {
 </head>
 <body>
 
+  
   <div id="menuContainer">
     <h1>USS Enterprise Asteroid Dodge</h1>
     <p>Navigate the Enterprise with your arrow keys and dodge incoming asteroids!</p>
@@ -139,16 +129,14 @@ button:hover {
     
   <button id="restartButton">Restart Game</button>
 
+
+  
   <div id="gameContainer">
     <button id="exitFullscreenBtn" title="Exit Fullscreen">✕</button>
     <canvas id="gameCanvas" width="600" height="400"></canvas>
   </div>
 
-  <div id="initialPrompt">
-    <p>New High Score! Enter your initials (3 letters):</p>
-    <input type="text" id="initialsInput" maxlength="3" />
-    <button id="submitInitials">Submit</button>
-  </div>
+  
 
   <script>
     const startButton = document.getElementById('startButton');
@@ -159,12 +147,6 @@ button:hover {
 
     const shipImg = new Image();
     const asteroidImg = new Image();
-
-    const highScoresBox = document.getElementById('highScoresBox');
-    const highScoresList = document.getElementById('highScoresList');
-    const initialPrompt = document.getElementById('initialPrompt');
-    const initialsInput = document.getElementById('initialsInput');
-    const submitInitials = document.getElementById('submitInitials');
 
     let ship = {
       x: canvas.width / 2 - 30,
@@ -235,7 +217,7 @@ button:hover {
           score++;
         }
 
-        // collision detection with updated size
+        // collision detection
         if (
           a.x < ship.x + ship.width &&
           a.x + 30 > ship.x &&
@@ -321,9 +303,6 @@ button:hover {
         ctx.textAlign = 'center';
         ctx.fillText('Restart Game', buttonX + buttonW / 2, buttonY + buttonH / 2);
 
-        setTimeout(() => {
-          checkHighScore(score);
-        }, 500);
       }
     }
 
@@ -331,8 +310,6 @@ button:hover {
       goFullscreen(gameContainer);
 
       gameContainer.style.display = 'block';
-      highScoresBox.style.display = 'none';
-      initialPrompt.style.display = 'none';
 
       asteroidSpeed = 2;
       asteroidRate = 2000;
@@ -346,45 +323,9 @@ button:hover {
       loop();
     }
 
-    function checkHighScore(score) {
-      const scores = JSON.parse(localStorage.getItem('highScores')) || [];
-      const lowest = scores.length < 5 ? 0 : scores[4].score;
-
-      if (score > lowest) {
-        initialPrompt.style.display = 'block';
-        initialsInput.focus();
-        submitInitials.onclick = () => {
-          const initials = initialsInput.value.toUpperCase().substring(0, 3);
-          if (initials.length === 0) return;
-
-          scores.push({ initials, score });
-          scores.sort((a, b) => b.score - a.score);
-          const newTop = scores.slice(0, 5);
-          localStorage.setItem('highScores', JSON.stringify(newTop));
-          showHighScores();
-          initialPrompt.style.display = 'none';
-          initialsInput.value = '';
-        };
-      } else {
-        showHighScores();
-      }
-    }
-
-    function showHighScores() {
-      const scores = JSON.parse(localStorage.getItem('highScores')) || [];
-      highScoresList.innerHTML = '';
-      scores.forEach(s => {
-        const li = document.createElement('li');
-        li.textContent = `${s.initials} - ${s.score}`;
-        highScoresList.appendChild(li);
-      });
-      highScoresBox.style.display = 'block';
-    }
-
     function tryStartIfImagesReady() {
       if (imagesLoaded === 2) {
         startButton.disabled = false;
-        showHighScores();
       }
     }
 
