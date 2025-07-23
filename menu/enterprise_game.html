@@ -134,6 +134,8 @@ button:hover {
     const startButton = document.getElementById('startButton');
     const gameContainer = document.getElementById('gameContainer');
     const canvas = document.getElementById('gameCanvas');
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
     const ctx = canvas.getContext('2d');
 
     const shipImg = new Image();
@@ -227,7 +229,7 @@ button:hover {
 
     function drawScore() {
       ctx.fillStyle = 'white';
-      ctx.font = '12px "Press Start 2P", monospace';
+      ctx.font = '16px "Press Start 2P", monospace';
       ctx.fillText(`Score: ${score}`, 10, 20);
     }
 
