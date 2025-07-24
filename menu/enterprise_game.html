@@ -285,12 +285,13 @@ button:hover {
         const buttonH = 40;
         const radius = 10;
 
-        const fillColor = isHoveringRestart ? '#555' : '#222';
-        const strokeColor = 'white';
+        const fillColor = isHoveringRestart ? '#0f0' : '#222';
+        const strokeColor = '#0f0';
+        const textColor = isHoveringRestart ? 'black' : '#0f0';
 
         roundRect(ctx, buttonX, buttonY, buttonW, buttonH, radius, fillColor, strokeColor);
 
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = textColor;
         ctx.font = '16px "Press Start 2P", monospace';
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';
