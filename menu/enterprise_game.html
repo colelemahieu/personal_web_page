@@ -302,12 +302,15 @@ button:hover {
     }
 
     function startGame() {
+      clearInterval(asteroidInterval);
+      clearInterval(difficultyTimer);
+      
       goFullscreen(gameContainer);
-
       gameContainer.style.display = 'block';
 
       asteroidSpeed = 2;
       asteroidRate = 2000;
+      ship.speed = 10;
       ship.x = canvas.width / 2 - 30;
       score = 0;
       gameOver = false;
