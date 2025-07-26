@@ -76,20 +76,20 @@
   font-family: 'Press Start 2P', monospace;
   font-size: 12px;
   padding: 10px 20px;
-  color: #0f0;
+  color: #00f;
   background-color: black;
-  border: 3px solid #0f0;
+  border: 3px solid #00f;
   border-radius: 10px;
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow: 0 0 10px #0f0;
+  box-shadow: 0 0 10px #00f;
   transition: all 0.2s ease;
 }
 
 button:hover {
-  background-color: #0f0;
+  background-color: #00f;
   color: black;
-  box-shadow: 0 0 20px #0f0;
+  box-shadow: 0 0 20px #00f;
 }
 
     #initialPrompt {
@@ -286,9 +286,9 @@ button:hover {
         const buttonH = 40;
         const radius = 10;
 
-        const fillColor = isHoveringRestart ? '#0f0' : '#222';
-        const strokeColor = '#0f0';
-        const textColor = isHoveringRestart ? 'black' : '#0f0';
+        const fillColor = isHoveringRestart ? '#00f' : '#222';
+        const strokeColor = '#00f';
+        const textColor = isHoveringRestart ? 'black' : '#00f';
 
         roundRect(ctx, buttonX, buttonY, buttonW, buttonH, radius, fillColor, strokeColor);
 
