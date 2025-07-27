@@ -283,6 +283,7 @@ figcaption cite {
   max-width: 600px;         
   min-width: 300px;         
   box-sizing: border-box;
+  margin: 1rem;
 }
 
 .page-sections {
