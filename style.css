@@ -21,7 +21,8 @@ html, body {
 }
 
 .site-title {
-  background-color: #33658A;
+  /*background-color: #33658A;*/
+  background-color: #3C5A77;
   color: white;
   text-align: center;
   font-size: 2em;
@@ -57,7 +58,8 @@ h3 + p {
 }
 
 nav {
-  background-color: #33658A;
+  /*background-color: #33658A;*/
+  background-color: #3C5A77;
   overflow: hidden;
 }
 
