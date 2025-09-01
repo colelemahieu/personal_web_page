@@ -21,7 +21,6 @@ html, body {
 }
 
 .site-title {
-  /*background-color: #33658A;*/
   background-color: #3C5A77;
   color: white;
   font-size: 1.5rem;
@@ -59,7 +58,7 @@ h3 + p {
   display: flex;
   align-items: center;
   justify-content: space-between; 
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #3C5A77;
 }
 
@@ -83,6 +82,34 @@ h3 + p {
   color: #FFD700; 
 }
 
+.menu-toggle {
+  display: none;  /* hidden on desktop */
+  font-size: 1.8rem;
+  color: #f2f2f2;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* show hamburger on small screens */
+  }
+
+  .nav-menu {
+    display: none;           /* hide menu initially */
+    flex-direction: column;  /* stack links vertically */
+    background-color: #3C5A77;
+    position: absolute;
+    top: 60px;  /* just below the navbar */
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .nav-menu.active {
+    display: flex; /* show menu when toggled */
+  }
+}
 
 .content {
   /*padding: 20px;*/
@@ -262,12 +289,11 @@ figcaption cite {
 }
 
 .sticky-footer {
-  /*position: fixed;*/
   bottom: 0;
   left: 0;
   width: 100%;
   text-align: center;
-  background: #33658A;     
+  background: #3C5A77;     
   padding: 0.75rem 0;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
 }

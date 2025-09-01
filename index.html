@@ -22,8 +22,11 @@
 </head>
 <body>
 
-  <nav class="navbar">
+<nav class="navbar">
   <div class="site-title">Cole Le Mahieu</div>
+  
+  <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+
   <ul class="nav-menu">
     <li><a onclick="showSection('home')">Home</a></li>
     <li><a onclick="showSection('physics_research')">Physics</a></li>
@@ -97,6 +100,10 @@ function loadSection(id) {
     function capitalize(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
+
+    function toggleMenu() {
+    document.querySelector(".nav-menu").classList.toggle("active");
+  }
 
     document.addEventListener('DOMContentLoaded', () => {
       loadSection('home');  
