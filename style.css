@@ -308,6 +308,22 @@ figcaption cite {
   text-decoration: underline;
 }
 
+.sticky-footer .linkedin-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sticky-footer .linkedin-link:hover {
+  text-decoration: underline;
+}
+
+.sticky-footer .footer-separator {
+  color: #fff;        
+  margin: 0 8px;      
+  font-weight: 600;   
+}
+
 .content-box {
   background-color: #fdfdfd; 
   border-radius: 15px;
