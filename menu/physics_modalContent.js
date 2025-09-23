@@ -17,6 +17,14 @@ window.physicsResearchContent = {
 
     <br>
     <h3 style="font-weight: normal;">CMS Control Center Shifts</h3>
+    <p>In addition to my work on the CMS ZDCs, I also volunteered for shifts in the CMS control room. This involved monitoring the status of the detector's various components. When alarms went off signaling a subcomponent malfunction, it was my job to record the error and notify the on call experts capable of making a fix. It was also my job to distribute dosimeters (used for monitoring radiation dosage) and safety masks (in case of gas leaks) to people going down into the tunnel.</p>
+    <figure style="text-align: center;">
+      <img src="Images/control_room3.jpg" alt="control room" style="display: block; margin: auto; max-width: 100%; height: auto;">
+      <figcaption>A view of my station in the CMS control room</figcaption>
+
+      <figure style="text-align: center;">
+      <img src="Images/control_room2.jpg" alt="status panel" style="display: block; margin: auto; max-width: 110%; height: auto;">
+      <figcaption>Various status summaries in the CMS control room</figcaption>
   `,
 
   "Ultraperipheral Collisions (UPCs)": `
