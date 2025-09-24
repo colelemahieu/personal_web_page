@@ -48,6 +48,9 @@
       target.classList.add('active');
       loadSection(id);
 
+      // Collapse mobile menu after clicking a link
+      document.querySelector(".nav-menu").classList.remove("active");
+
       // Send virtual pageview to Google Analytics
       if (typeof gtag === 'function') {
         gtag('event', 'page_view', {
