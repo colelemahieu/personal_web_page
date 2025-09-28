@@ -10,8 +10,30 @@
 The code generating these plots can be found on my Github: <a href="https://github.com/colelemahieu/BookProject" target="_blank">BookProject</a>.</p>
 <p class="note">*Technically, each year refers to the time duration from one birthday in that year to the next. This unfortunate documentation choice was begun in grade school and is too late to stop now.</p>
 
-<h3>Books Summarized</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+<br>
+<h3>Search books read for details</h3>
+
+<input type="text" id="searchInput" placeholder="Search by title or author..." style="padding: 8px; width: 300px; display: block; margin: 0 auto;">
+<p style="text-align: center;"><em>e.g. "Tolkien", "J.R.R. Tolkien", or "The Hobbit"</em></p>
+
+<table id="resultsTable" style="display: none; margin-top: 20px; margin-left: 10px; border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr style="background-color: #f4f4f4;">
+      <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Author</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Pages</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- JS puts rows here -->
+  </tbody>
+</table>
+
+
+<br>
+<h3>Books summarized</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; margin: 0 auto;">
 
   <!-- Left side -->
   <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -46,35 +68,20 @@ The code generating these plots can be found on my Github: <a href="https://gith
 
 <p class="note">"General" fiction primarily includes adventure and spy/thriller books. A small amount of Western and supernatural books also included.</p>
 
-
-<h3>Books by Year</h3>
-<label for="year">View fiction genre by year:</label>
-<select id="year"></select>
-<div>
-  <img id="chart" src="Images/BookProjectImages/genre_distribution_2007.png" alt="Genre Distribution Pie Chart for 2007">
+<br>
+<h3>Books by year</h3>
+<div style="text-align: center;">
+  <label for="year">View fiction genre by year:</label>
+  <select id="year"></select>
+  <div style="margin-top: 12px;">
+    <img id="chart" 
+         src="Images/BookProjectImages/genre_distribution_2007.png" 
+         alt="Genre Distribution Pie Chart for 2007" 
+         style="display: block; margin: 0 auto;">
+  </div>
 </div>
 
 
-<h3>Search by Book Title or Author</h3>
-<p><em>eg: search "Tolkien", "J.R.R. Tolkien", or "The Hobbit" for more details.</em></p>
-
-<input type="text" id="searchInput" placeholder="Search by title or author..." style="padding: 8px; width: 300px;">
-
-<table id="resultsTable" style="display: none; margin-top: 20px; margin-left: 10px; border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f4f4;">
-      <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Author</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Pages</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- JS puts rows here -->
-  </tbody>
-</table>
-
-<br>
 <br>
 <br>
 <h2>Enterprise Game</h2>
