@@ -23,7 +23,7 @@ function setupProjects() {
 
     select.addEventListener('change', () => {
       const year = select.value;
-      chart.src = `Images/BookProjectImages/genre_distribution_${year}.png`;
+      chart.src = `../Images/BookProjectImages/genre_distribution_${year}.png`;
       chart.alt = `Genre Distribution Pie Chart for ${year}`;
     });
   }
@@ -55,7 +55,7 @@ function setupProjects() {
     genreSelect.addEventListener('change', () => {
       const selected = genreSelect.value;
       const selectedOption = options.find(opt => opt.value === selected);
-      genreChart.src = `Images/BookProjectImages/${selected}`;
+      genreChart.src = `../Images/BookProjectImages/${selected}`;
       genreChart.alt = selectedOption.alt;
     });
   }
@@ -92,7 +92,7 @@ function setupProjects() {
     pagesSelect.addEventListener('change', () => {
       const selected = pagesSelect.value;
       const selectedOption = options.find(opt => opt.value === selected);
-      pagesChart.src = `Images/BookProjectImages/${selected}`;
+      pagesChart.src = `../Images/BookProjectImages/${selected}`;
       pagesChart.alt = selectedOption.alt;
     });
   }
@@ -175,7 +175,7 @@ function setupProjects() {
     }, 500));
 
     // Load CSV and preprocess
-    Papa.parse('Files/books.csv', {
+    Papa.parse('../Files/books.csv', {
       download: true,
       header: true,
       complete: function(results) {

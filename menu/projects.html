@@ -1,85 +1,30 @@
 <br>
 
-<h2>Personal Library Project</h2>
-<p>This project documents my personal library and displays it on the web using SQLite and Flask. Please be patient while Render loads the project.  
-<a href="https://library-sql-web-project.onrender.com" target="_blank">Explore my library</a></p>
+<div class="projects-container">
 
-<br>
-<h2>Books Read Project</h2>
-<p>Since 2007*, I have kept track of every book I have read. This provides a nice opportunity to practice some simple Python and JavaScript skills. Various statistics are presented below based on book genre, page number, etc.
-The code generating these plots can be found on my Github: <a href="https://github.com/colelemahieu/BookProject" target="_blank">BookProject</a>.</p>
-<p class="note">*Technically, each year refers to the time duration from one birthday in that year to the next. This unfortunate documentation choice was begun in grade school and is too late to stop now.</p>
-
-<br>
-<h3>Search books read for details</h3>
-
-<input type="text" id="searchInput" placeholder="Search by title or author..." style="padding: 8px; width: 300px; display: block; margin: 0 auto;">
-<p style="text-align: center;"><em>e.g. "Tolkien", "J.R.R. Tolkien", or "The Hobbit"</em></p>
-
-<table id="resultsTable" style="display: none; margin-top: 20px; margin-left: 10px; border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f4f4;">
-      <th style="border: 1px solid #ddd; padding: 8px;">Title</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Author</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Pages</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- JS puts rows here -->
-  </tbody>
-</table>
-
-
-<br>
-<h3>Books summarized</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; margin: 0 auto;">
-
-  <!-- Left side -->
-  <div style="display: flex; flex-direction: column; gap: 12px;">
-    <!-- Label + Dropdown above the image -->
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <label for="genrePlot">View genre plot:</label>
-      <select id="genrePlot" style="width: 150px; height: auto;"></select>
+  <a href="https://library-sql-web-project.onrender.com" target="_blank" class="project-card">
+    <div class="project-image">
+      <img src="Images/library_screenshot.png" alt="Library Project Screenshot">
     </div>
-
-    <!-- Left side image below the label + dropdown -->
-    <img id="genreChart"
-         src="Images/BookProjectImages/genre_distribution_all.png" 
-         alt="Genre Distribution Pie Chart All Years" 
-         style="width: 300px; height: 300px; object-fit: contain;">
-  </div>
-
-  <!-- Right side -->
-  <div style="display: flex; flex-direction: column; gap: 12px;">
-    <!-- Label + Dropdown in a row -->
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <label for="pagesPlot">View summary plot:</label>
-      <select id="pagesPlot" style="width: 150px; height: auto;"></select>
+    <div class="project-content">
+      <h3>Personal Library</h3>
+      <p>This project documents my personal library and displays it on the web using SQLite and Flask. Please be patient while Render loads the project.</p>
     </div>
+  </a>
 
-    <!-- Image below the label + dropdown -->
-    <img id="pagesChart"
-         src="Images/BookProjectImages/books_per_year.png" 
-         alt="Books per Year" 
-         style="width: 360px; height: 240px; object-fit: contain;">
+
+  <a href="menu/books_read.html" target="_blank" class="project-card">
+  <div class="project-image">
+      <img src="Images/books_read_screenshot.png" alt="Books Read Screenshot">
+    </div>
+  <div class="project-content">
+    <h3>Books Read Project</h3>
+    <p>This project documents my reading history since 2007. Includes a search bar as well as summaries and year by year plots for genres read, etc.</p>
   </div>
+</a>
+
 </div>
 
-<p class="note">"General" fiction primarily includes adventure and spy/thriller books. A small amount of Western and supernatural books also included.</p>
-
-<br>
-<h3>Books by year</h3>
-<div style="text-align: center;">
-  <label for="year">View fiction genre by year:</label>
-  <select id="year"></select>
-  <div style="margin-top: 12px;">
-    <img id="chart" 
-         src="Images/BookProjectImages/genre_distribution_2007.png" 
-         alt="Genre Distribution Pie Chart for 2007" 
-         style="display: block; margin: 0 auto;">
-  </div>
-</div>
 
 
 <br>
