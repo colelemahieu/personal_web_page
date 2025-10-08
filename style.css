@@ -492,6 +492,12 @@ figcaption cite {
 .tag.python {
   background-color: #3776AB; /* blue */
 }
+.tag.cpp {
+  background-color: #0047AB; /* dark blue */
+}
+.tag.bash {
+  background-color: #374a52; /* dark grey */
+}
 .tag.sqlite {
   background-color: #044A64; /* dark teal */
 }
