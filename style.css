@@ -506,6 +506,10 @@ figcaption cite {
   background-color: #d4a017;; /* yellow */
 }
 
+.tag.java {
+  background-color: #e67825; /* orangish-yellow */
+}
+
 .tag.html {
   background-color: #E34F26; /* orange */
 }
