@@ -539,4 +539,8 @@ figcaption cite {
   text-decoration: underline;
 }
 
+#resultsTable th {
+  text-align: left;
+}
+
 
