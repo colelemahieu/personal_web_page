@@ -205,10 +205,13 @@ figcaption cite {
 
 .research-container {
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 1em;
+  gap: 2rem;
+  max-width: 1000px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
 }
 
 .research-text {
@@ -521,6 +524,29 @@ figcaption cite {
   padding: 2rem;
 }
 
+.research-hero {
+  min-height: 100vh;
+  background-image: url("Images/lhc_tunnel.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+body.modal-open .research-hero {
+  filter: blur(3px) brightness(0.6);
+  pointer-events: none;
+}
+
+.modal {
+  pointer-events: auto;
+}
+
 .about-overlay {
   display: flex;
   gap: 1.5rem;
@@ -538,6 +564,32 @@ figcaption cite {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
   z-index: 1;
 }
+
+.research-buttons {
+  margin-top: 2rem;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.research-buttons button {
+  background-color: #3C5A77;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.research-buttons button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
 
 .about-overlay .profile-pic {
   height: 100%;        
@@ -574,5 +626,24 @@ figcaption cite {
   .about-overlay .profile-pic {
     height: auto;
     width: 130px;
+  }
+
+  .research-hero {
+    padding: 1.25rem;
+  }
+
+  .research-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .research-text,
+  .research-image {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .research-buttons {
+    gap: 0.75rem;
   }
 }
