@@ -403,8 +403,11 @@ figcaption cite {
   border-radius: 16px;
   overflow: hidden;
   text-decoration: none;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  /*background: white;*/
+  /*box-shadow: 0 4px 10px rgba(0,0,0,0.15);*/
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .project-card a {
@@ -533,6 +536,19 @@ figcaption cite {
   
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.projects-hero {
+  min-height: 100vh;
+  background-image: url("Images/mountain.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
