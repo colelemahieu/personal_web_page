@@ -462,6 +462,9 @@ figcaption cite {
 .tag.python {
   background-color: #3776AB; /* blue */
 }
+.tag.tableau {
+  background-color: #0F52BA; /* blue */
+}
 .tag.cpp {
   background-color: #0047AB; /* dark blue */
 }
