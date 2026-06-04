@@ -53,8 +53,8 @@ window.physicsResearchContent = {
     physicists can investigate the inner structure of protons and neutrons.</p>
   `,
 
-  "My Physics Research": `
-    <p>Coming soon</p>
+  "My Dissertation": `
+    <p>My dissertation studied photoproduced dijets in ultraperipheral PbPb collisions. Click <a href="https://inspirehep.net/literature/3131322" target="_blank">here</a> to read my dissertation.</p>
    `,
 
   "Compact Muon Solenoid (CMS) Detector": `
